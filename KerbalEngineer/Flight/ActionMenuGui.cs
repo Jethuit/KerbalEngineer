@@ -98,7 +98,7 @@ namespace KerbalEngineer.Flight {
                     padding = new RectOffset(),
                     alignment = TextAnchor.MiddleCenter,
                     fontSize = 11,
-                    fontStyle = FontStyle.Bold,
+                    fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                     fixedHeight = 20.0f,
                 };
             } catch (Exception ex) {

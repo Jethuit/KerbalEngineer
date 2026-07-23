@@ -84,7 +84,7 @@ namespace KerbalEngineer.Control
                     {
                         textColor = Color.white
                     },
-                    fontStyle = FontStyle.Bold,
+                    fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                     fixedHeight = 30.0f,
                     alignment = TextAnchor.MiddleLeft,
                     stretchWidth = true,
@@ -108,7 +108,7 @@ namespace KerbalEngineer.Control
                         textColor = Color.white
                     },
                     fontSize = 26,
-                    fontStyle = FontStyle.Bold,
+                    fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                     alignment = TextAnchor.UpperCenter,
                     stretchWidth = true,
                 });

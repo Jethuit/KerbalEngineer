@@ -224,10 +224,10 @@ using KerbalEngineer.Unity.Localization;
             {
                 PartInfoItem.Release(infoItems);
                 infoItems.Clear();
-                infoItems.Add(PartInfoItem.Create("Delta-V", lastStage.deltaV.ToString("N0") + " / " + lastStage.totalDeltaV.ToString("N0") + "m/s"));
-                infoItems.Add(PartInfoItem.Create("Mass", Units.ToMass(lastStage.mass, lastStage.totalMass)));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_DeltaV", "DELTA-V"), lastStage.deltaV.ToString("N0") + " / " + lastStage.totalDeltaV.ToString("N0") + "m/s"));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_Mass", "MASS"), Units.ToMass(lastStage.mass, lastStage.totalMass)));
                 infoItems.Add(PartInfoItem.Create("TWR", lastStage.thrustToWeight.ToString("F2") + " (" + lastStage.maxThrustToWeight.ToString("F2") + ")"));
-                infoItems.Add(PartInfoItem.Create("Parts", lastStage.partCount + " / " + lastStage.totalPartCount));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_Parts", "PARTS"), lastStage.partCount + " / " + lastStage.totalPartCount));
             }
         }
 

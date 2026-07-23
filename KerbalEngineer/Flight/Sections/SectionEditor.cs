@@ -153,7 +153,7 @@ namespace KerbalEngineer.Flight.Sections {
                     description = description.Substring(0, 50 - 1) + "...";
                 }
 
-                if (GUILayout.Button("<b>" + category.DisplayName.ToUpper() + "</b>" + (string.IsNullOrEmpty(category.DisplayDescription) ? string.Empty : "\n<i>" + description + "</i>"), category == ReadoutCategory.Selected ? this.categoryButtonActiveStyle : this.categoryButtonStyle)) {
+                if (GUILayout.Button(Loc.Emphasise(category.DisplayName.ToUpper()) + (string.IsNullOrEmpty(category.DisplayDescription) ? string.Empty : "\n<i>" + description + "</i>"), category == ReadoutCategory.Selected ? this.categoryButtonActiveStyle : this.categoryButtonStyle)) {
                     ReadoutCategory.Selected = category;
                     this.categoryList.enabled = false;
                 }
@@ -370,7 +370,7 @@ namespace KerbalEngineer.Flight.Sections {
         }
 
         private void DrawPresetButton(Preset preset) {
-            if (!GUILayout.Button("<b>" + preset.Name.ToUpper() + "</b>", this.categoryButtonStyle)) {
+            if (!GUILayout.Button(Loc.Emphasise(preset.DisplayName.ToUpper()), this.categoryButtonStyle)) {
                 return;
             }
 
@@ -380,7 +380,7 @@ namespace KerbalEngineer.Flight.Sections {
         }
 
         private void DrawPresetSaveButton() {
-            if (!GUILayout.Button("<b>" + Loc.Get("#KER_UI_SavePreset", "SAVE PRESET") + "</b>", this.categoryButtonStyle)) {
+            if (!GUILayout.Button(Loc.Emphasise(Loc.Get("#KER_UI_SavePreset", "SAVE PRESET")), this.categoryButtonStyle)) {
                 return;
             }
 
@@ -395,7 +395,7 @@ namespace KerbalEngineer.Flight.Sections {
             foreach (var preset in PresetLibrary.Presets) {
                 GUILayout.BeginHorizontal();
                 this.DrawPresetButton(preset);
-                if (GUILayout.Button("<b>X</b>", this.categoryButtonStyle, GUILayout.Width(30.0f))) {
+                if (GUILayout.Button(Loc.Emphasise("X"), this.categoryButtonStyle, GUILayout.Width(30.0f))) {
                     removePreset = preset;
                 }
                 GUILayout.EndHorizontal();
@@ -412,7 +412,9 @@ namespace KerbalEngineer.Flight.Sections {
         ///     Initialises all the styles required for this object.
         /// </summary>
         private void InitialiseStyles() {
-            this.windowStyle = new GUIStyle(HighLogic.Skin.window);
+            this.windowStyle = new GUIStyle(HighLogic.Skin.window) {
+                fontStyle = Loc.FontStyleFor(HighLogic.Skin.window.fontStyle)
+            };
             
             this.windowSubtitleStyle = new GUIStyle(HighLogic.Skin.label) {
                 normal =
@@ -435,7 +437,7 @@ namespace KerbalEngineer.Flight.Sections {
                 padding = new RectOffset(0, 0, 0, 0),
                 alignment = TextAnchor.MiddleCenter,
                 fontSize = 12,
-                fontStyle = FontStyle.Bold,
+                fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 stretchHeight = true
             };
 
@@ -466,7 +468,7 @@ namespace KerbalEngineer.Flight.Sections {
                 padding = new RectOffset(),
                 alignment = TextAnchor.MiddleLeft,
                 fontSize = 12,
-                fontStyle = FontStyle.Bold,
+                fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 fixedHeight = 30.0f,
                 stretchWidth = true
             };
@@ -487,7 +489,7 @@ namespace KerbalEngineer.Flight.Sections {
                 padding = new RectOffset(10, 0, 0, 0),
                 alignment = TextAnchor.MiddleLeft,
                 fontSize = 12,
-                fontStyle = FontStyle.Bold,
+                fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 stretchWidth = true,
                 stretchHeight = true
             };
@@ -501,7 +503,7 @@ namespace KerbalEngineer.Flight.Sections {
                 padding = new RectOffset(),
                 alignment = TextAnchor.MiddleCenter,
                 fontSize = 12,
-                fontStyle = FontStyle.Bold,
+                fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 stretchHeight = true
             };
             this.readoutEditButtonStyle = new GUIStyle(this.readoutButtonStyle);

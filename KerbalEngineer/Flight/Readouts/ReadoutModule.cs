@@ -295,7 +295,7 @@ namespace KerbalEngineer.Flight.Readouts {
                 padding = new RectOffset(5, 0, 0, 0),
                 alignment = TextAnchor.MiddleLeft,
                 fontSize = (int)(11 * GuiDisplaySize.Offset),
-                fontStyle = FontStyle.Bold,
+                fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 fixedHeight = 20.0f * GuiDisplaySize.Offset
             };
 

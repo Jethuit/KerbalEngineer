@@ -226,18 +226,18 @@ using KerbalEngineer.Unity.Localization;
             ModuleAlternator moduleAlternator = PartExtensions.GetModule<ModuleAlternator>(selectedPart);
             if (moduleAlternator != null)
             {
-                infoItems.Add(PartInfoItem.Create("Alternator"));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_Alternator", "Alternator")));
                 for (int i = 0; i < moduleAlternator.resHandler.outputResources.Count; ++i)
                 {
                     var moduleResource = moduleAlternator.resHandler.outputResources[i];
-                    infoItems.Add(PartInfoItem.Create("\t" + moduleResource.name, moduleResource.rate.ToRate()));
+                    infoItems.Add(PartInfoItem.Create("\t" + GetResourceDisplayName(moduleResource.name), moduleResource.rate.ToRate()));
                 }
             }
         }
 
         private void SetCostInfo()
         {
-            infoItems.Add(PartInfoItem.Create("Cost", Units.ConcatF(PartExtensions.GetCostDry(selectedPart), PartExtensions.GetCostWet(selectedPart))));
+            infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_Cost", "COST"), Units.ConcatF(PartExtensions.GetCostDry(selectedPart), PartExtensions.GetCostWet(selectedPart))));
         }
 
         private void SetDecouplerInfo()
@@ -245,10 +245,10 @@ using KerbalEngineer.Unity.Localization;
             var protoModuleDecoupler = PartExtensions.GetProtoModuleDecoupler(selectedPart);
             if (protoModuleDecoupler != null)
             {
-                infoItems.Add(PartInfoItem.Create("Ejection Force", protoModuleDecoupler.EjectionForce.ToForce()));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_EjectionForce", "Ejection Force"), protoModuleDecoupler.EjectionForce.ToForce()));
                 if (protoModuleDecoupler.IsOmniDecoupler)
                 {
-                    infoItems.Add(PartInfoItem.Create("Omni-directional"));
+                    infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_OmniDirectional", "Omni-directional")));
                 }
             }
         }
@@ -258,11 +258,11 @@ using KerbalEngineer.Unity.Localization;
             var protoModuleEngine = PartExtensions.GetProtoModuleEngine(selectedPart);
             if (protoModuleEngine != null)
             {
-                infoItems.Add(PartInfoItem.Create("Thrust", Units.ToForce(protoModuleEngine.MinimumThrust, protoModuleEngine.MaximumThrust)));
-                infoItems.Add(PartInfoItem.Create("Isp", Units.ConcatF(protoModuleEngine.GetSpecificImpulse(1.0f), protoModuleEngine.GetSpecificImpulse(0.0f)) + "s"));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_Thrust", "THRUST"), Units.ToForce(protoModuleEngine.MinimumThrust, protoModuleEngine.MaximumThrust)));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_Isp", "ISP"), Units.ConcatF(protoModuleEngine.GetSpecificImpulse(1.0f), protoModuleEngine.GetSpecificImpulse(0.0f)) + "s"));
                 if (protoModuleEngine.Propellants.Count > 0)
                 {
-                    infoItems.Add(PartInfoItem.Create("Propellants"));
+                    infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_Propellants", "Propellants")));
 
                     float totalRatio = 0.0f;
                     for (int i = 0; i < protoModuleEngine.Propellants.Count; ++i)
@@ -273,7 +273,7 @@ using KerbalEngineer.Unity.Localization;
                     for (int i = 0; i < protoModuleEngine.Propellants.Count; ++i)
                     {
                         var propellant = protoModuleEngine.Propellants[i];
-                        infoItems.Add(PartInfoItem.Create("\t" + propellant.name, (propellant.ratio / totalRatio).ToPercent()));
+                        infoItems.Add(PartInfoItem.Create("\t" + GetResourceDisplayName(propellant.name), (propellant.ratio / totalRatio).ToPercent()));
                     }
                 }
             }
@@ -286,27 +286,27 @@ using KerbalEngineer.Unity.Localization;
             {
                 if (moduleGenerator.resHandler.inputResources.Count > 0)
                 {
-                    infoItems.Add(PartInfoItem.Create("Generator Input"));
+                    infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_GeneratorInput", "Generator Input")));
                     for (int i = 0; i < moduleGenerator.resHandler.inputResources.Count; ++i)
                     {
                         var generatorResource = moduleGenerator.resHandler.inputResources[i];
-                        infoItems.Add(PartInfoItem.Create("\t" + generatorResource.name, generatorResource.rate.ToRate()));
+                        infoItems.Add(PartInfoItem.Create("\t" + GetResourceDisplayName(generatorResource.name), generatorResource.rate.ToRate()));
                     }
                 }
 
                 if (moduleGenerator.resHandler.outputResources.Count > 0)
                 {
-                    infoItems.Add(PartInfoItem.Create("Generator Output"));
+                    infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_GeneratorOutput", "Generator Output")));
                     for (int i = 0; i < moduleGenerator.resHandler.outputResources.Count; ++i)
                     {
                         var generatorResource = moduleGenerator.resHandler.outputResources[i];
-                        infoItems.Add(PartInfoItem.Create("\t" + generatorResource.name, generatorResource.rate.ToRate()));
+                        infoItems.Add(PartInfoItem.Create("\t" + GetResourceDisplayName(generatorResource.name), generatorResource.rate.ToRate()));
                     }
                 }
 
                 if (moduleGenerator.isAlwaysActive)
                 {
-                    infoItems.Add(PartInfoItem.Create("Generator is Always Active"));
+                    infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_GeneratorAlwaysActive", "Generator is Always Active")));
                 }
             }
         }
@@ -316,7 +316,7 @@ using KerbalEngineer.Unity.Localization;
             var moduleGimbal = PartExtensions.GetModule<ModuleGimbal>(selectedPart);
             if (moduleGimbal != null)
             {
-                infoItems.Add(PartInfoItem.Create("Thrust Vectoring", moduleGimbal.gimbalRange.ToString("F2")));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_ThrustVectoring", "Thrust Vectoring"), moduleGimbal.gimbalRange.ToString("F2")));
             }
         }
 
@@ -324,7 +324,7 @@ using KerbalEngineer.Unity.Localization;
         {
             if (selectedPart.physicalSignificance == Part.PhysicalSignificance.FULL)
             {
-                infoItems.Add(PartInfoItem.Create("Mass", Units.ToMass(PartExtensions.GetDryMass(selectedPart), PartExtensions.GetWetMass(selectedPart))));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_Mass", "MASS"), Units.ToMass(PartExtensions.GetDryMass(selectedPart), PartExtensions.GetWetMass(selectedPart))));
             }
         }
 
@@ -333,9 +333,9 @@ using KerbalEngineer.Unity.Localization;
             var moduleParachute = PartExtensions.GetModule<ModuleParachute>(selectedPart);
             if (moduleParachute != null)
             {
-                infoItems.Add(PartInfoItem.Create("Deployed Drag", Units.ConcatF(moduleParachute.semiDeployedDrag, moduleParachute.fullyDeployedDrag)));
-                infoItems.Add(PartInfoItem.Create("Deployment Altitude", moduleParachute.deployAltitude.ToDistance()));
-                infoItems.Add(PartInfoItem.Create("Deployment Pressure", moduleParachute.minAirPressureToOpen.ToString("F2")));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_DeployedDrag", "Deployed Drag"), Units.ConcatF(moduleParachute.semiDeployedDrag, moduleParachute.fullyDeployedDrag)));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_DeploymentAltitude", "Deployment Altitude"), moduleParachute.deployAltitude.ToDistance()));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_DeploymentPressure", "Deployment Pressure"), moduleParachute.minAirPressureToOpen.ToString("F2")));
             }
         }
 
@@ -344,8 +344,8 @@ using KerbalEngineer.Unity.Localization;
             var moduleRcs = PartExtensions.GetModule<ModuleRCS>(selectedPart);
             if (moduleRcs != null)
             {
-                infoItems.Add(PartInfoItem.Create("Thruster Power", moduleRcs.thrusterPower.ToForce()));
-                infoItems.Add(PartInfoItem.Create("Specific Impulse", Units.ConcatF(moduleRcs.atmosphereCurve.Evaluate(1.0f), moduleRcs.atmosphereCurve.Evaluate(0.0f)) + "s"));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_ThrusterPower", "Thruster Power"), moduleRcs.thrusterPower.ToForce()));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_SpecificImpulse", "Specific Impulse"), Units.ConcatF(moduleRcs.atmosphereCurve.Evaluate(1.0f), moduleRcs.atmosphereCurve.Evaluate(0.0f)) + "s"));
             }
         }
 
@@ -354,14 +354,14 @@ using KerbalEngineer.Unity.Localization;
             var moduleReactionWheel = PartExtensions.GetModule<ModuleReactionWheel>(selectedPart);
             if (moduleReactionWheel != null)
             {
-                infoItems.Add(PartInfoItem.Create("Reaction Wheel Torque"));
-                infoItems.Add(PartInfoItem.Create("\tPitch", moduleReactionWheel.PitchTorque.ToTorque()));
-                infoItems.Add(PartInfoItem.Create("\tRoll", moduleReactionWheel.RollTorque.ToTorque()));
-                infoItems.Add(PartInfoItem.Create("\tYaw", moduleReactionWheel.YawTorque.ToTorque()));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_ReactionWheelTorque", "Reaction Wheel Torque")));
+                infoItems.Add(PartInfoItem.Create("\t" + Loc.Get("#KER_UI_PartInfo_Pitch", "Pitch"), moduleReactionWheel.PitchTorque.ToTorque()));
+                infoItems.Add(PartInfoItem.Create("\t" + Loc.Get("#KER_UI_PartInfo_Roll", "Roll"), moduleReactionWheel.RollTorque.ToTorque()));
+                infoItems.Add(PartInfoItem.Create("\t" + Loc.Get("#KER_UI_PartInfo_Yaw", "Yaw"), moduleReactionWheel.YawTorque.ToTorque()));
                 for (int i = 0; i < moduleReactionWheel.resHandler.inputResources.Count; ++i)
                 {
                     var moduleResource = moduleReactionWheel.resHandler.inputResources[i];
-                    infoItems.Add(PartInfoItem.Create("\t" + moduleResource.name, moduleResource.rate.ToRate()));
+                    infoItems.Add(PartInfoItem.Create("\t" + GetResourceDisplayName(moduleResource.name), moduleResource.rate.ToRate()));
                 }
             }
         }
@@ -380,7 +380,7 @@ using KerbalEngineer.Unity.Localization;
 
             if (visibleResources)
             {
-                infoItems.Add(PartInfoItem.Create("Resources"));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_Resources", "RESOURCES")));
                 for (int i = 0; i < selectedPart.Resources.dict.Count; ++i)
                 {
                     var partResource = selectedPart.Resources.dict.At(i);
@@ -388,8 +388,8 @@ using KerbalEngineer.Unity.Localization;
                     if (partResource.hideFlow == false)
                     {
                         infoItems.Add(PartResourceExtensions.GetDensity(partResource) > 0
-                                          ? PartInfoItem.Create("\t" + partResource.info.name, "(" + PartResourceExtensions.GetMass(partResource).ToMass() + ") " + partResource.amount.ToString("F1"))
-                                          : PartInfoItem.Create("\t" + partResource.info.name, partResource.amount.ToString("F1")));
+                                          ? PartInfoItem.Create("\t" + Loc.ResourceName(partResource.info.name, partResource.info.displayName), "(" + PartResourceExtensions.GetMass(partResource).ToMass() + ") " + partResource.amount.ToString("F1"))
+                                          : PartInfoItem.Create("\t" + Loc.ResourceName(partResource.info.name, partResource.info.displayName), partResource.amount.ToString("F1")));
                     }
                 }
             }
@@ -399,7 +399,7 @@ using KerbalEngineer.Unity.Localization;
         {
             if (PartExtensions.HasModule<ModuleSAS>(selectedPart))
             {
-                infoItems.Add(PartInfoItem.Create("SAS Equiped"));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_SasEquipped", "SAS Equipped")));
             }
         }
 
@@ -407,7 +407,7 @@ using KerbalEngineer.Unity.Localization;
         {
             if (PartExtensions.HasModule<ModuleScienceContainer>(selectedPart))
             {
-                infoItems.Add(PartInfoItem.Create("Science Container"));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_ScienceContainer", "Science Container")));
             }
         }
 
@@ -416,11 +416,11 @@ using KerbalEngineer.Unity.Localization;
             var moduleScienceExperiment = PartExtensions.GetModule<ModuleScienceExperiment>(selectedPart);
             if (moduleScienceExperiment != null)
             {
-                infoItems.Add(PartInfoItem.Create("Science Experiment", moduleScienceExperiment.experimentActionName));
-                infoItems.Add(PartInfoItem.Create("\tTransmit Efficiency", moduleScienceExperiment.xmitDataScalar.ToPercent()));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_ScienceExperiment", "Science Experiment"), moduleScienceExperiment.experimentActionName));
+                infoItems.Add(PartInfoItem.Create("\t" + Loc.Get("#KER_UI_PartInfo_TransmitEfficiency", "Transmit Efficiency"), moduleScienceExperiment.xmitDataScalar.ToPercent()));
                 if (moduleScienceExperiment.rerunnable == false)
                 {
-                    infoItems.Add(PartInfoItem.Create("\tSingle Usage"));
+                    infoItems.Add(PartInfoItem.Create("\t" + Loc.Get("#KER_UI_PartInfo_SingleUsage", "Single Usage")));
                 }
             }
         }
@@ -429,7 +429,7 @@ using KerbalEngineer.Unity.Localization;
         {
             if (PartExtensions.HasModule<ModuleAnimateGeneric>(selectedPart, m => m.isOneShot))
             {
-                infoItems.Add(PartInfoItem.Create("Single Activation"));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_SingleActivation", "Single Activation")));
             }
         }
 
@@ -438,15 +438,15 @@ using KerbalEngineer.Unity.Localization;
             var moduleDeployableSolarPanel = PartExtensions.GetModule<ModuleDeployableSolarPanel>(selectedPart);
             if (moduleDeployableSolarPanel != null)
             {
-                infoItems.Add(PartInfoItem.Create("Charge Rate", moduleDeployableSolarPanel.chargeRate.ToRate()));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_ChargeRate", "Charge Rate"), moduleDeployableSolarPanel.chargeRate.ToRate()));
                 if (moduleDeployableSolarPanel.isBreakable)
                 {
-                    infoItems.Add(PartInfoItem.Create("Breakable"));
+                    infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_Breakable", "Breakable")));
                 }
 
                 if (moduleDeployableSolarPanel.trackingBody == Sun.Instance)
                 {
-                    infoItems.Add(PartInfoItem.Create("Sun Tracking"));
+                    infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_SunTracking", "Sun Tracking")));
                 }
             }
         }
@@ -456,12 +456,18 @@ using KerbalEngineer.Unity.Localization;
             var moduleDataTransmitter = PartExtensions.GetModule<ModuleDataTransmitter>(selectedPart);
             if (moduleDataTransmitter != null)
             {
-                infoItems.Add(PartInfoItem.Create("Packet Size", moduleDataTransmitter.packetSize.ToString("F2") + " Mits"));
-                infoItems.Add(PartInfoItem.Create("Bandwidth", (moduleDataTransmitter.packetInterval * moduleDataTransmitter.packetSize).ToString("F2") + "Mits/sec"));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_PacketSize", "Packet Size"), moduleDataTransmitter.packetSize.ToString("F2") + " Mits"));
+                infoItems.Add(PartInfoItem.Create(Loc.Get("#KER_UI_PartInfo_Bandwidth", "Bandwidth"), (moduleDataTransmitter.packetInterval * moduleDataTransmitter.packetSize).ToString("F2") + "Mits/sec"));
 
                 // TODO: allow for multiple consumed resources
-                infoItems.Add(PartInfoItem.Create(moduleDataTransmitter.GetConsumedResources()[0].name, moduleDataTransmitter.packetResourceCost.ToString("F2") + "/Packet"));
+                infoItems.Add(PartInfoItem.Create(GetResourceDisplayName(moduleDataTransmitter.GetConsumedResources()[0].name), moduleDataTransmitter.packetResourceCost.ToString("F2") + Loc.Get("#KER_UI_PartInfo_PerPacket", "/Packet")));
             }
+        }
+
+        private static string GetResourceDisplayName(string resourceName)
+        {
+            PartResourceDefinition definition = PartResourceLibrary.Instance.GetDefinition(resourceName);
+            return Loc.ResourceName(resourceName, definition == null ? resourceName : definition.displayName);
         }
 
         private void Window(int windowId)

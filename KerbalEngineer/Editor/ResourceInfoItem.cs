@@ -20,6 +20,7 @@
 #region Using Directives
 
 using KerbalEngineer.Extensions;
+using KerbalEngineer.Unity.Localization;
 
 #endregion
 
@@ -32,7 +33,7 @@ namespace KerbalEngineer.Editor
         public ResourceInfoItem(PartResource resource)
         {
             this.Definition = PartResourceExtensions.GetDefinition(resource);
-            this.Name = this.Definition.name;
+            this.Name = Loc.ResourceName(this.Definition.name, this.Definition.displayName);
             this.Amount = resource.amount;
         }
 

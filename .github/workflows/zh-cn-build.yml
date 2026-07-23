@@ -68,9 +68,25 @@ jobs:
           source_tags = set()
           for path in root.rglob("*.cs"):
               source_tags.update(re.findall(r'(?:Loc\.Get|\bL)\("(#[A-Za-z0-9_]+)"\s*,', path.read_text(encoding="utf-8-sig")))
+          source_tags.update(
+              re.findall(
+                  r'"(#[A-Za-z0-9_]+)"',
+                  (root / "KerbalEngineer.Unity" / "Localization" / "Loc.cs").read_text(encoding="utf-8-sig"),
+              )
+          )
           missing_source_tags = sorted(source_tags - set(english))
           if missing_source_tags:
               raise SystemExit(f"source tags missing from catalogs: {missing_source_tags}")
+
+          dynamic_display_tags = {
+              *(f"#KER_Section_{abbreviation}_Name" for abbreviation in (
+                  "ORBT", "SURF", "VESL", "RDZV", "TRCK", "HEAT", "BODY", "BURN", "LAND", "HUD1", "HUD2"
+              )),
+              "#KER_Section_TRCK_Reference",
+          }
+          missing_dynamic_tags = sorted(dynamic_display_tags - set(english))
+          if missing_dynamic_tags:
+              raise SystemExit(f"dynamic display tags missing from catalogs: {missing_dynamic_tags}")
 
           readout_root = root / "KerbalEngineer" / "Flight" / "Readouts"
           name_assignment = re.compile(r'(?m)^\s*(?:this\.)?Name\s*=\s*"')

@@ -21,6 +21,7 @@
 
 using System.Linq;
 using System.Text.RegularExpressions;
+using KerbalEngineer.Unity.Localization;
 
 #endregion
 
@@ -42,6 +43,34 @@ namespace KerbalEngineer.Flight.Presets
         public bool IsHudBackground { get; set; }
 
         public string Name { get; set; }
+
+        [System.Xml.Serialization.XmlIgnore]
+        public string DisplayName
+        {
+            get
+            {
+                string canonicalName;
+                switch (this.Abbreviation)
+                {
+                    case "ORBT": canonicalName = "ORBITAL"; break;
+                    case "SURF": canonicalName = "SURFACE"; break;
+                    case "VESL": canonicalName = "VESSEL"; break;
+                    case "RDZV": canonicalName = "RENDEZVOUS"; break;
+                    case "BURN": canonicalName = "MANEUVER"; break;
+                    case "LAND": canonicalName = "LANDING"; break;
+                    case "HUD 1": canonicalName = "HUD 1"; break;
+                    case "HUD 2": canonicalName = "HUD 2"; break;
+                    default: return this.Name;
+                }
+
+                if (!string.Equals(this.Name, canonicalName, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    return this.Name;
+                }
+
+                return Loc.Get("#KER_Section_" + this.Abbreviation.Replace(" ", string.Empty) + "_Name", this.Name);
+            }
+        }
 
         public string[] ReadoutNames { get; set; }
 

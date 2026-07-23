@@ -271,7 +271,7 @@ namespace KerbalEngineer.Flight
                 padding = new RectOffset(),
                 alignment = TextAnchor.MiddleCenter,
                 fontSize = (int)(13 * GuiDisplaySize.Offset),
-                fontStyle = FontStyle.Bold,
+                fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 stretchWidth = true
             };
 
@@ -285,7 +285,7 @@ namespace KerbalEngineer.Flight
                 padding = new RectOffset(),
                 alignment = TextAnchor.MiddleCenter,
                 fontSize = (int)(11 * GuiDisplaySize.Offset),
-                fontStyle = FontStyle.Bold,
+                fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 fixedWidth = 60.0f * GuiDisplaySize.Offset,
                 fixedHeight = 25.0f * GuiDisplaySize.Offset,
             };

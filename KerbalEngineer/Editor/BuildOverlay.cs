@@ -88,7 +88,7 @@ namespace KerbalEngineer.Editor
                         textColor = Color.white
                     },
                     fontSize = (int)(11 * GuiDisplaySize.Offset),
-                    fontStyle = FontStyle.Bold,
+                    fontStyle = KerbalEngineer.Unity.Localization.Loc.FontStyleFor(FontStyle.Bold),
                     alignment = TextAnchor.UpperLeft,
                     stretchWidth = true
                 });
@@ -129,7 +129,7 @@ namespace KerbalEngineer.Editor
                     },
                     padding = new RectOffset(20, 20, 0, 0),
                     fontSize = (int)(11 * GuiDisplaySize.Offset),
-                    fontStyle = FontStyle.Bold,
+                    fontStyle = KerbalEngineer.Unity.Localization.Loc.FontStyleFor(FontStyle.Bold),
                     alignment = TextAnchor.MiddleCenter,
                     fixedHeight = 15.0f,
                     stretchWidth = true
@@ -148,7 +148,7 @@ namespace KerbalEngineer.Editor
                         textColor = Color.yellow
                     },
                     fontSize = (int)(11 * GuiDisplaySize.Offset),
-                    fontStyle = FontStyle.Bold,
+                    fontStyle = KerbalEngineer.Unity.Localization.Loc.FontStyleFor(FontStyle.Bold),
                     stretchWidth = true
                 });
             }

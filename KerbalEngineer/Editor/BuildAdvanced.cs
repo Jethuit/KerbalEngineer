@@ -384,7 +384,8 @@ namespace KerbalEngineer.Editor
         {
             GUILayout.BeginHorizontal();
             GUILayout.Space(20.0f * depth);
-            if (GUILayout.Button(bodyInfo.Children.Count > 0 ? bodyInfo.Name + " [" + bodyInfo.Children.Count + "]" : bodyInfo.Name, bodyInfo.Selected && bodyInfo.SelectedDepth == 0 ? bodiesButtonActiveStyle : bodiesButtonStyle))
+            string displayName = Loc.BodyName(bodyInfo.Name);
+            if (GUILayout.Button(bodyInfo.Children.Count > 0 ? displayName + " [" + bodyInfo.Children.Count + "]" : displayName, bodyInfo.Selected && bodyInfo.SelectedDepth == 0 ? bodiesButtonActiveStyle : bodiesButtonStyle))
             {
                 CelestialBodies.SetSelectedBody(bodyInfo.Name);
                 Altitude = 0.0f;
@@ -786,7 +787,7 @@ namespace KerbalEngineer.Editor
                     textColor = Color.white
                 },
                 fontSize = (int)(11 * GuiDisplaySize.Offset),
-                fontStyle = FontStyle.Bold,
+                fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 alignment = TextAnchor.MiddleCenter
             };
 
@@ -797,7 +798,7 @@ namespace KerbalEngineer.Editor
                     textColor = Color.white
                 },
                 fontSize = (int)(11 * GuiDisplaySize.Offset),
-                fontStyle = FontStyle.Bold,
+                fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 alignment = TextAnchor.MiddleCenter,
                 stretchWidth = true
             };
@@ -805,7 +806,7 @@ namespace KerbalEngineer.Editor
             infoStyle = new GUIStyle(HighLogic.Skin.label)
             {
                 fontSize = (int)(11 * GuiDisplaySize.Offset),
-                fontStyle = FontStyle.Bold,
+                fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 alignment = TextAnchor.MiddleCenter,
                 stretchWidth = true
             };
@@ -837,7 +838,7 @@ namespace KerbalEngineer.Editor
                     textColor = Color.white
                 },
                 fontSize = (int)(11 * GuiDisplaySize.Offset),
-                fontStyle = FontStyle.Bold,
+                fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 alignment = TextAnchor.MiddleCenter,
                 fixedHeight = 20.0f
             };
@@ -923,7 +924,7 @@ namespace KerbalEngineer.Editor
                     }
 
                     bodiesListPosition = new Rect(position.width - 452.0f * GuiDisplaySize.Offset, 5.0f, 125.0f * GuiDisplaySize.Offset, 20.0f);
-                    bodiesList.enabled = GUI.Toggle(bodiesListPosition, bodiesList.enabled, Loc.Get("#KER_UI_BodyValue", "BODY: <<1>>", CelestialBodies.SelectedBody.Name.ToUpper()), buttonStyle);
+                    bodiesList.enabled = GUI.Toggle(bodiesListPosition, bodiesList.enabled, Loc.Get("#KER_UI_BodyValue", "BODY: <<1>>", Loc.BodyName(CelestialBodies.SelectedBody.Name).ToUpper()), buttonStyle);
                     bodiesList.SetPosition(bodiesListPosition.Translate(position), bodiesListPosition);
 
                     if (GUI.Toggle(new Rect(position.width - 485.0f * GuiDisplaySize.Offset, 5.0f, 30.0f * GuiDisplaySize.Offset, 20.0f), showRCS, "RCS", buttonStyle) != showRCS) {

@@ -300,7 +300,7 @@ namespace KerbalEngineer.Flight.Sections {
                 margin = new RectOffset(),
                 padding = new RectOffset(2, 0, 5, 2),
                 fontSize = (int)(13 * GuiDisplaySize.Offset),
-                fontStyle = FontStyle.Bold,
+                fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 stretchWidth = true
             };
 
@@ -325,7 +325,7 @@ namespace KerbalEngineer.Flight.Sections {
                 padding = new RectOffset(),
                 alignment = TextAnchor.MiddleCenter,
                 fontSize = (int)(12 * GuiDisplaySize.Offset),
-                fontStyle = FontStyle.Bold,
+                fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 fixedWidth = 220.0f * GuiDisplaySize.Offset,
                 fixedHeight = 20.0f * GuiDisplaySize.Offset
             };

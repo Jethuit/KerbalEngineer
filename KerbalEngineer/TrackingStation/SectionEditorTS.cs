@@ -58,7 +58,7 @@ namespace KerbalEngineer.TrackingStation {
                     description = description.Substring(0, 50 - 1) + "...";
                 }
 
-                if (GUILayout.Button("<b>" + category.DisplayName.ToUpper() + "</b>" + (string.IsNullOrEmpty(category.DisplayDescription) ? string.Empty : "\n<i>" + description + "</i>"), category == ReadoutCategory.Selected ? this.categoryButtonActiveStyle : this.categoryButtonStyle)) {
+                if (GUILayout.Button(Loc.Emphasise(category.DisplayName.ToUpper()) + (string.IsNullOrEmpty(category.DisplayDescription) ? string.Empty : "\n<i>" + description + "</i>"), category == ReadoutCategory.Selected ? this.categoryButtonActiveStyle : this.categoryButtonStyle)) {
                     ReadoutCategory.Selected = category;
                     this.categoryList.enabled = false;
                 }
