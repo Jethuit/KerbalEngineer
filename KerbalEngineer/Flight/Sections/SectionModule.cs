@@ -299,7 +299,7 @@ namespace KerbalEngineer.Flight.Sections {
                 },
                 margin = new RectOffset(),
                 padding = new RectOffset(2, 0, 5, 2),
-                fontSize = (int)(13 * GuiDisplaySize.Offset),
+                fontSize = Loc.FontSizeFor((int)(13 * GuiDisplaySize.Offset)),
                 fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 stretchWidth = true
             };
@@ -311,7 +311,7 @@ namespace KerbalEngineer.Flight.Sections {
                 },
                 margin = new RectOffset(0, 0, 5, 3),
                 padding = new RectOffset(),
-                fontSize = (int)(10 * GuiDisplaySize.Offset),
+                fontSize = Loc.FontSizeFor((int)(10 * GuiDisplaySize.Offset)),
                 stretchHeight = true,
                 fixedWidth = 60.0f * GuiDisplaySize.Offset
             };
@@ -324,7 +324,7 @@ namespace KerbalEngineer.Flight.Sections {
                 margin = new RectOffset(),
                 padding = new RectOffset(),
                 alignment = TextAnchor.MiddleCenter,
-                fontSize = (int)(12 * GuiDisplaySize.Offset),
+                fontSize = Loc.FontSizeFor((int)(12 * GuiDisplaySize.Offset)),
                 fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 fixedWidth = 220.0f * GuiDisplaySize.Offset,
                 fixedHeight = 20.0f * GuiDisplaySize.Offset

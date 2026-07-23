@@ -87,7 +87,7 @@ namespace KerbalEngineer.Editor
                     {
                         textColor = Color.white
                     },
-                    fontSize = (int)(11 * GuiDisplaySize.Offset),
+                    fontSize = KerbalEngineer.Unity.Localization.Loc.FontSizeFor((int)(11 * GuiDisplaySize.Offset)),
                     fontStyle = KerbalEngineer.Unity.Localization.Loc.FontStyleFor(FontStyle.Bold),
                     alignment = TextAnchor.UpperLeft,
                     stretchWidth = true
@@ -128,7 +128,7 @@ namespace KerbalEngineer.Editor
                         textColor = Color.yellow
                     },
                     padding = new RectOffset(20, 20, 0, 0),
-                    fontSize = (int)(11 * GuiDisplaySize.Offset),
+                    fontSize = KerbalEngineer.Unity.Localization.Loc.FontSizeFor((int)(11 * GuiDisplaySize.Offset)),
                     fontStyle = KerbalEngineer.Unity.Localization.Loc.FontStyleFor(FontStyle.Bold),
                     alignment = TextAnchor.MiddleCenter,
                     fixedHeight = 15.0f,
@@ -147,7 +147,7 @@ namespace KerbalEngineer.Editor
                     {
                         textColor = Color.yellow
                     },
-                    fontSize = (int)(11 * GuiDisplaySize.Offset),
+                    fontSize = KerbalEngineer.Unity.Localization.Loc.FontSizeFor((int)(11 * GuiDisplaySize.Offset)),
                     fontStyle = KerbalEngineer.Unity.Localization.Loc.FontStyleFor(FontStyle.Bold),
                     stretchWidth = true
                 });
@@ -173,7 +173,7 @@ namespace KerbalEngineer.Editor
                     {
                         textColor = Color.white
                     },
-                    fontSize = (int)(11 * GuiDisplaySize.Offset),
+                    fontSize = KerbalEngineer.Unity.Localization.Loc.FontSizeFor((int)(11 * GuiDisplaySize.Offset)),
                     fontStyle = FontStyle.Normal,
                     alignment = TextAnchor.UpperRight,
                     stretchWidth = true

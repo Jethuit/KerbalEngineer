@@ -413,7 +413,8 @@ namespace KerbalEngineer.Flight.Sections {
         /// </summary>
         private void InitialiseStyles() {
             this.windowStyle = new GUIStyle(HighLogic.Skin.window) {
-                fontStyle = Loc.FontStyleFor(HighLogic.Skin.window.fontStyle)
+                fontStyle = Loc.FontStyleFor(HighLogic.Skin.window.fontStyle),
+                fontSize = Loc.FontSizeFor(HighLogic.Skin.window.fontSize)
             };
             
             this.windowSubtitleStyle = new GUIStyle(HighLogic.Skin.label) {
@@ -424,7 +425,7 @@ namespace KerbalEngineer.Flight.Sections {
                 margin = new RectOffset(0, 0, 0, 5),
                 padding = new RectOffset(0, 0, 0, 0),
                 alignment = TextAnchor.MiddleCenter,
-                fontSize = 12,
+                fontSize = Loc.FontSizeFor(12),
                 fontStyle = FontStyle.Normal,
                 stretchWidth = true,
                 stretchHeight = true,
@@ -436,7 +437,7 @@ namespace KerbalEngineer.Flight.Sections {
                 margin = new RectOffset(2, 2, 2, 2),
                 padding = new RectOffset(0, 0, 0, 0),
                 alignment = TextAnchor.MiddleCenter,
-                fontSize = 12,
+                fontSize = Loc.FontSizeFor(12),
                 fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 stretchHeight = true
             };
@@ -449,7 +450,7 @@ namespace KerbalEngineer.Flight.Sections {
                 margin = new RectOffset(0, 0, 2, 0),
                 padding = new RectOffset(5, 5, 5, 5),
                 alignment = TextAnchor.MiddleCenter,
-                fontSize = 12,
+                fontSize = Loc.FontSizeFor(12),
                 fontStyle = FontStyle.Normal,
                 richText = true
             };
@@ -467,7 +468,7 @@ namespace KerbalEngineer.Flight.Sections {
                 margin = new RectOffset(),
                 padding = new RectOffset(),
                 alignment = TextAnchor.MiddleLeft,
-                fontSize = 12,
+                fontSize = Loc.FontSizeFor(12),
                 fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 fixedHeight = 30.0f,
                 stretchWidth = true
@@ -488,7 +489,7 @@ namespace KerbalEngineer.Flight.Sections {
                 margin = new RectOffset(),
                 padding = new RectOffset(10, 0, 0, 0),
                 alignment = TextAnchor.MiddleLeft,
-                fontSize = 12,
+                fontSize = Loc.FontSizeFor(12),
                 fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 stretchWidth = true,
                 stretchHeight = true
@@ -502,7 +503,7 @@ namespace KerbalEngineer.Flight.Sections {
                 margin = new RectOffset(2, 2, 2, 2),
                 padding = new RectOffset(),
                 alignment = TextAnchor.MiddleCenter,
-                fontSize = 12,
+                fontSize = Loc.FontSizeFor(12),
                 fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 stretchHeight = true
             };
@@ -522,7 +523,7 @@ namespace KerbalEngineer.Flight.Sections {
                 margin = new RectOffset(),
                 padding = new RectOffset(),
                 alignment = TextAnchor.MiddleLeft,
-                fontSize = 13,
+                fontSize = Loc.FontSizeFor(13),
                 fontStyle = FontStyle.Normal,
                 stretchWidth = true,
                 richText = true

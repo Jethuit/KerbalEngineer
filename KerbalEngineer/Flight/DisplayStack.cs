@@ -270,7 +270,7 @@ namespace KerbalEngineer.Flight
                 margin = new RectOffset(0, 0, 5, 3),
                 padding = new RectOffset(),
                 alignment = TextAnchor.MiddleCenter,
-                fontSize = (int)(13 * GuiDisplaySize.Offset),
+                fontSize = Loc.FontSizeFor((int)(13 * GuiDisplaySize.Offset)),
                 fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 stretchWidth = true
             };
@@ -284,7 +284,7 @@ namespace KerbalEngineer.Flight
                 margin = new RectOffset(),
                 padding = new RectOffset(),
                 alignment = TextAnchor.MiddleCenter,
-                fontSize = (int)(11 * GuiDisplaySize.Offset),
+                fontSize = Loc.FontSizeFor((int)(11 * GuiDisplaySize.Offset)),
                 fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 fixedWidth = 60.0f * GuiDisplaySize.Offset,
                 fixedHeight = 25.0f * GuiDisplaySize.Offset,

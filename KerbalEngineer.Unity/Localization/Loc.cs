@@ -91,6 +91,14 @@ namespace KerbalEngineer.Unity.Localization
         }
 
         /// <summary>
+        ///     Raises Chinese UI text by two pixels without changing other catalogues.
+        /// </summary>
+        public static int FontSizeFor(int preferred)
+        {
+            return UseNormalFont ? preferred + 2 : preferred;
+        }
+
+        /// <summary>
         ///     Applies rich-text emphasis unless the active catalogue requests normal-weight text.
         /// </summary>
         public static string Emphasise(string value)

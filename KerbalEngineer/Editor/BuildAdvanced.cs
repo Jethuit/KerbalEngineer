@@ -786,7 +786,7 @@ namespace KerbalEngineer.Editor
                 {
                     textColor = Color.white
                 },
-                fontSize = (int)(11 * GuiDisplaySize.Offset),
+                fontSize = Loc.FontSizeFor((int)(11 * GuiDisplaySize.Offset)),
                 fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 alignment = TextAnchor.MiddleCenter
             };
@@ -797,7 +797,7 @@ namespace KerbalEngineer.Editor
                 {
                     textColor = Color.white
                 },
-                fontSize = (int)(11 * GuiDisplaySize.Offset),
+                fontSize = Loc.FontSizeFor((int)(11 * GuiDisplaySize.Offset)),
                 fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 alignment = TextAnchor.MiddleCenter,
                 stretchWidth = true
@@ -805,7 +805,7 @@ namespace KerbalEngineer.Editor
 
             infoStyle = new GUIStyle(HighLogic.Skin.label)
             {
-                fontSize = (int)(11 * GuiDisplaySize.Offset),
+                fontSize = Loc.FontSizeFor((int)(11 * GuiDisplaySize.Offset)),
                 fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 alignment = TextAnchor.MiddleCenter,
                 stretchWidth = true
@@ -837,7 +837,7 @@ namespace KerbalEngineer.Editor
                 {
                     textColor = Color.white
                 },
-                fontSize = (int)(11 * GuiDisplaySize.Offset),
+                fontSize = Loc.FontSizeFor((int)(11 * GuiDisplaySize.Offset)),
                 fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 alignment = TextAnchor.MiddleCenter,
                 fixedHeight = 20.0f

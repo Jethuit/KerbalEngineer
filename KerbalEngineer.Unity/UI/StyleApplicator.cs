@@ -126,7 +126,7 @@ namespace KerbalEngineer.Unity.UI
             {
                 textComponent.font = textStyle.Font;
             }
-            textComponent.fontSize = textStyle.Size;
+            textComponent.fontSize = KerbalEngineer.Unity.Localization.Loc.FontSizeFor(textStyle.Size);
             textComponent.fontStyle = textStyle.Style;
             textComponent.color = textStyle.Colour;
         }

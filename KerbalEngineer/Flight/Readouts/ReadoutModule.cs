@@ -294,7 +294,7 @@ namespace KerbalEngineer.Flight.Readouts {
                 margin = new RectOffset(),
                 padding = new RectOffset(5, 0, 0, 0),
                 alignment = TextAnchor.MiddleLeft,
-                fontSize = (int)(11 * GuiDisplaySize.Offset),
+                fontSize = Loc.FontSizeFor((int)(11 * GuiDisplaySize.Offset)),
                 fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                 fixedHeight = 20.0f * GuiDisplaySize.Offset
             };
@@ -303,7 +303,7 @@ namespace KerbalEngineer.Flight.Readouts {
                 margin = new RectOffset(),
                 padding = new RectOffset(0, 5, 0, 0),
                 alignment = TextAnchor.MiddleRight,
-                fontSize = (int)(11 * GuiDisplaySize.Offset),
+                fontSize = Loc.FontSizeFor((int)(11 * GuiDisplaySize.Offset)),
                 fontStyle = FontStyle.Normal,
                 fixedHeight = 20.0f * GuiDisplaySize.Offset,
             };
@@ -320,7 +320,7 @@ namespace KerbalEngineer.Flight.Readouts {
                 margin = new RectOffset(),
                 padding = new RectOffset(),
                 alignment = TextAnchor.MiddleCenter,
-                fontSize = (int)(11 * GuiDisplaySize.Offset),
+                fontSize = Loc.FontSizeFor((int)(11 * GuiDisplaySize.Offset)),
                 fontStyle = FontStyle.Normal,
                 fixedHeight = 20.0f * GuiDisplaySize.Offset,
                 stretchWidth = true
@@ -339,12 +339,12 @@ namespace KerbalEngineer.Flight.Readouts {
                 margin = new RectOffset(0, 0, 1, 1),
                 padding = new RectOffset(),
                 alignment = TextAnchor.MiddleCenter,
-                fontSize = (int)(11 * GuiDisplaySize.Offset),
+                fontSize = Loc.FontSizeFor((int)(11 * GuiDisplaySize.Offset)),
                 fixedHeight = 18.0f * GuiDisplaySize.Offset
             };
 
             CompactButtonStyle = new GUIStyle(ButtonStyle) {
-                fontSize = (int)(10 * GuiDisplaySize.Offset),
+                fontSize = Loc.FontSizeFor((int)(10 * GuiDisplaySize.Offset)),
                 margin = new RectOffset(0, 0, 5, 5),
                 fixedHeight = ButtonStyle.fontSize
             };
@@ -353,7 +353,7 @@ namespace KerbalEngineer.Flight.Readouts {
                 margin = new RectOffset(0, 0, 1, 1),
                 padding = new RectOffset(5, 5, 0, 0),
                 alignment = TextAnchor.MiddleLeft,
-                fontSize = (int)(11 * GuiDisplaySize.Offset),
+                fontSize = Loc.FontSizeFor((int)(11 * GuiDisplaySize.Offset)),
                 fixedHeight = 18.0f * GuiDisplaySize.Offset
             };
         }

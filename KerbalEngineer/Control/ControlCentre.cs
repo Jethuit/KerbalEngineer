@@ -107,7 +107,7 @@ namespace KerbalEngineer.Control
                     {
                         textColor = Color.white
                     },
-                    fontSize = 26,
+                    fontSize = Loc.FontSizeFor(26),
                     fontStyle = Loc.FontStyleFor(FontStyle.Bold),
                     alignment = TextAnchor.UpperCenter,
                     stretchWidth = true,
@@ -221,7 +221,7 @@ namespace KerbalEngineer.Control
         {
             this.panelSelectorStyle = new GUIStyle(Button)
             {
-                fontSize = 16,
+                fontSize = Loc.FontSizeFor(16),
                 fixedHeight = 40.0f
             };
         }

@@ -13,7 +13,7 @@ namespace KerbalEngineer.UIControls {
             margin = new RectOffset(0, 0, 0, 0),
             padding = new RectOffset(),
             alignment = TextAnchor.MiddleCenter,
-            fontSize = 14,
+            fontSize = KerbalEngineer.Unity.Localization.Loc.FontSizeFor(14),
             fontStyle = FontStyle.Normal,
             stretchHeight = true
         };
