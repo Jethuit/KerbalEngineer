@@ -55,7 +55,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
                     this.total = (SimulationProcessor.LastStage.RCSThrust / (SimulationProcessor.LastStage.totalMass * this.gravity)).ToString("F2");
                     this.DrawLine(this.total, section);
                 } else {
-                    this.DrawLine("N/A", section);
+                    this.DrawLine(L("#KER_UI_NotAvailable", "N/A"), section);
                 }
             }
         }

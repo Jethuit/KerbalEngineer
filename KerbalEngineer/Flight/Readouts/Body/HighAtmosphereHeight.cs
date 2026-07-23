@@ -43,7 +43,7 @@ namespace KerbalEngineer.Flight.Readouts.Body {
             if (FlightGlobals.ActiveVessel.mainBody.atmosphere) {
                 this.DrawLine(FlightGlobals.ActiveVessel.mainBody.scienceValues.flyingAltitudeThreshold.ToDistance(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             } else
-                this.DrawLine("N/A", section);
+                this.DrawLine(L("#KER_UI_NotAvailable", "N/A"), section);
 
         }
 

@@ -51,7 +51,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
                 return;
             }
 
-            this.DrawLine("Node DeltaV (Total)", ManoeuvreProcessor.TotalDeltaV.ToSpeed() + " (" + (ManoeuvreProcessor.HasDeltaV ? "S" + ManoeuvreProcessor.FinalStage : "X") + ")", section);
+            this.DrawLine(L("#KER_UI_NodeDeltaVTotal", "Node Δv (Total)"), ManoeuvreProcessor.TotalDeltaV.ToSpeed() + " (" + (ManoeuvreProcessor.HasDeltaV ? "S" + ManoeuvreProcessor.FinalStage : "X") + ")", section);
         }
 
         public override void Reset()

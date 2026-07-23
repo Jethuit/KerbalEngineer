@@ -45,7 +45,7 @@ namespace KerbalEngineer.Flight.Readouts.Body {
             if (!Double.IsInfinity(FlightGlobals.currentMainBody.sphereOfInfluence))
                 this.DrawLine(FlightGlobals.currentMainBody.sphereOfInfluence.ToDistance(section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             else
-                this.DrawLine("N/A", section);
+                this.DrawLine(L("#KER_UI_NotAvailable", "N/A"), section);
         }
 
         #endregion

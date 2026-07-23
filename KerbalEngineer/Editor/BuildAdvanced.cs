@@ -25,6 +25,7 @@ namespace KerbalEngineer.Editor
     using Settings;
     using UIControls;
     using Unity;
+    using Unity.Localization;
     using UnityEngine;
     using VesselSimulator;
 
@@ -342,7 +343,7 @@ namespace KerbalEngineer.Editor
             {
                 GUILayout.BeginHorizontal();
                 GUILayout.BeginVertical();
-                GUILayout.Label("Altitude: " + (Altitude * 0.001f).ToString("F1") + "km", settingAtmoStyle, GUILayout.Width(125.0f * GuiDisplaySize.Offset));
+                GUILayout.Label(Loc.Get("#KER_UI_AltitudeValue", "Altitude: <<1>>km", (Altitude * 0.001f).ToString("F1")), settingAtmoStyle, GUILayout.Width(125.0f * GuiDisplaySize.Offset));
                 GUI.skin = HighLogic.Skin;
                 Altitude = GUILayout.HorizontalSlider(Altitude, 0.0f, (float)(CelestialBodies.SelectedBody.CelestialBody.atmosphereDepth));
                 GUI.skin = null;
@@ -351,7 +352,7 @@ namespace KerbalEngineer.Editor
                 GUILayout.Space(5.0f);
 
                 GUILayout.BeginVertical();
-                GUILayout.Label("Mach: " + atmosphericMach.ToString("F2"), settingAtmoStyle, GUILayout.Width(125.0f * GuiDisplaySize.Offset));
+                GUILayout.Label(Loc.Get("#KER_UI_MachValue", "Mach: <<1>>", atmosphericMach.ToString("F2")), settingAtmoStyle, GUILayout.Width(125.0f * GuiDisplaySize.Offset));
                 GUI.skin = HighLogic.Skin;
                 atmosphericMach = GUILayout.HorizontalSlider(Mathf.Clamp(atmosphericMach, 0.0f, maxMach), 0.0f, maxMach);
                 GUI.skin = null;
@@ -406,7 +407,7 @@ namespace KerbalEngineer.Editor
         private void DrawBurnTime()
         {
             GUILayout.BeginVertical(GUILayout.Width(75.0f * GuiDisplaySize.Offset));
-            GUILayout.Label("BURN", titleStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_Burn", "BURN"), titleStyle);
             for (int i = 0; i < stagesLength; ++i)
             {
                 stage = stages[i];
@@ -424,7 +425,7 @@ namespace KerbalEngineer.Editor
         private void DrawCost()
         {
             GUILayout.BeginVertical(GUILayout.Width(110.0f * GuiDisplaySize.Offset));
-            GUILayout.Label("COST", titleStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_Cost", "COST"), titleStyle);
             for (int i = 0; i < stagesLength; ++i)
             {
                 stage = stages[i];
@@ -442,7 +443,7 @@ namespace KerbalEngineer.Editor
         private void DrawDeltaV()
         {
             GUILayout.BeginVertical(GUILayout.Width(100.0f * GuiDisplaySize.Offset));
-            GUILayout.Label("DELTA-V", titleStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_DeltaV", "DELTA-V"), titleStyle);
             for (int i = 0; i < stagesLength; ++i)
             {
                 stage = stages[i];
@@ -460,7 +461,7 @@ namespace KerbalEngineer.Editor
         private void DrawIsp()
         {
             GUILayout.BeginVertical(GUILayout.Width(75.0f * GuiDisplaySize.Offset));
-            GUILayout.Label("ISP", titleStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_Isp", "ISP"), titleStyle);
             for (int i = 0; i < stagesLength; ++i)
             {
                 stage = stages[i];
@@ -478,7 +479,7 @@ namespace KerbalEngineer.Editor
         private void DrawMass()
         {
             GUILayout.BeginVertical(GUILayout.Width(110.0f * GuiDisplaySize.Offset));
-            GUILayout.Label("MASS", titleStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_Mass", "MASS"), titleStyle);
             for (int i = 0; i < stagesLength; ++i)
             {
                 stage = stages[i];
@@ -496,7 +497,7 @@ namespace KerbalEngineer.Editor
         private void DrawPartCount()
         {
             GUILayout.BeginVertical(GUILayout.Width(50.0f * GuiDisplaySize.Offset));
-            GUILayout.Label("PARTS", titleStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_Parts", "PARTS"), titleStyle);
             for (int i = 0; i < stagesLength; ++i)
             {
                 stage = stages[i];
@@ -514,63 +515,63 @@ namespace KerbalEngineer.Editor
         private void DrawSettings()
         {
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Compact mode collapses to the:", settingStyle);
-            compactCollapseRight = !GUILayout.Toggle(!compactCollapseRight, "LEFT", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
-            compactCollapseRight = GUILayout.Toggle(compactCollapseRight, "RIGHT", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
+            GUILayout.Label(Loc.Get("#KER_UI_CompactCollapseSide", "Compact mode collapses to the:"), settingStyle);
+            compactCollapseRight = !GUILayout.Toggle(!compactCollapseRight, Loc.Get("#KER_UI_Left", "LEFT"), buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
+            compactCollapseRight = GUILayout.Toggle(compactCollapseRight, Loc.Get("#KER_UI_Right", "RIGHT"), buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Simulate using vectored thrust values:", settingStyle);
-            SimManager.vectoredThrust = GUILayout.Toggle(SimManager.vectoredThrust, "ENABLED", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
+            GUILayout.Label(Loc.Get("#KER_UI_SimulateVectoredThrust", "Simulate using vectored thrust values:"), settingStyle);
+            SimManager.vectoredThrust = GUILayout.Toggle(SimManager.vectoredThrust, Loc.Get("#KER_UI_Enabled", "ENABLED"), buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
             GUILayout.EndHorizontal();
 
             if (SimManager.hasInstalledRealFuels)
             {
                 GUILayout.BeginHorizontal();
-                GUILayout.Label("Simulate using residual predictions:", settingStyle);
-                SimManager.RFResiduals = GUILayout.Toggle(SimManager.RFResiduals, "ENABLED", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
+                GUILayout.Label(Loc.Get("#KER_UI_SimulateResiduals", "Simulate using residual predictions:"), settingStyle);
+                SimManager.RFResiduals = GUILayout.Toggle(SimManager.RFResiduals, Loc.Get("#KER_UI_Enabled", "ENABLED"), buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
                 GUILayout.EndHorizontal();
             }
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Verbose Simulation Log:", settingStyle);
-            SimManager.logOutput = GUILayout.Toggle(SimManager.logOutput, "ENABLED", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
+            GUILayout.Label(Loc.Get("#KER_UI_VerboseSimulationLog", "Verbose Simulation Log:"), settingStyle);
+            SimManager.logOutput = GUILayout.Toggle(SimManager.logOutput, Loc.Get("#KER_UI_Enabled", "ENABLED"), buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Build Engineer Overlay:", settingStyle);
-            BuildOverlay.Visible = GUILayout.Toggle(BuildOverlay.Visible, "VISIBLE", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
-            BuildOverlayPartInfo.NamesOnly = GUILayout.Toggle(BuildOverlayPartInfo.NamesOnly, "NAMES ONLY", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
-            BuildOverlayPartInfo.ClickToOpen = GUILayout.Toggle(BuildOverlayPartInfo.ClickToOpen, "CLICK TO OPEN", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
+            GUILayout.Label(Loc.Get("#KER_UI_BuildEngineerOverlay", "Build Engineer Overlay:"), settingStyle);
+            BuildOverlay.Visible = GUILayout.Toggle(BuildOverlay.Visible, Loc.Get("#KER_UI_Visible", "VISIBLE"), buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
+            BuildOverlayPartInfo.NamesOnly = GUILayout.Toggle(BuildOverlayPartInfo.NamesOnly, Loc.Get("#KER_UI_NamesOnly", "NAMES ONLY"), buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
+            BuildOverlayPartInfo.ClickToOpen = GUILayout.Toggle(BuildOverlayPartInfo.ClickToOpen, Loc.Get("#KER_UI_ClickToOpen", "CLICK TO OPEN"), buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Flight Engineer activation mode:", settingStyle);
-            FlightEngineerCore.IsCareerMode = GUILayout.Toggle(FlightEngineerCore.IsCareerMode, "CAREER", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
-            FlightEngineerCore.IsCareerMode = !GUILayout.Toggle(!FlightEngineerCore.IsCareerMode, "PARTLESS", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
+            GUILayout.Label(Loc.Get("#KER_UI_FlightActivationMode", "Flight Engineer activation mode:"), settingStyle);
+            FlightEngineerCore.IsCareerMode = GUILayout.Toggle(FlightEngineerCore.IsCareerMode, Loc.Get("#KER_UI_Career", "CAREER"), buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
+            FlightEngineerCore.IsCareerMode = !GUILayout.Toggle(!FlightEngineerCore.IsCareerMode, Loc.Get("#KER_UI_Partless", "PARTLESS"), buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Flight Engineer Career Limitations:", settingStyle);
-            FlightEngineerCore.IsKerbalLimited = GUILayout.Toggle(FlightEngineerCore.IsKerbalLimited, "KERBAL", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
-            FlightEngineerCore.IsTrackingStationLimited = GUILayout.Toggle(FlightEngineerCore.IsTrackingStationLimited, "TRACKING", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
+            GUILayout.Label(Loc.Get("#KER_UI_CareerLimitations", "Flight Engineer Career Limitations:"), settingStyle);
+            FlightEngineerCore.IsKerbalLimited = GUILayout.Toggle(FlightEngineerCore.IsKerbalLimited, Loc.Get("#KER_UI_Kerbal", "KERBAL"), buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
+            FlightEngineerCore.IsTrackingStationLimited = GUILayout.Toggle(FlightEngineerCore.IsTrackingStationLimited, Loc.Get("#KER_UI_Tracking", "TRACKING"), buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset));
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Flight Engineer Toolbar Icon:", settingStyle);
-            FlightAppLauncher.IsHoverActivated = GUILayout.Toggle(FlightAppLauncher.IsHoverActivated, "MOUSE HOVER", buttonStyle, GUILayout.Width(125.0f * GuiDisplaySize.Offset));
+            GUILayout.Label(Loc.Get("#KER_UI_ToolbarIcon", "Flight Engineer Toolbar Icon:"), settingStyle);
+            FlightAppLauncher.IsHoverActivated = GUILayout.Toggle(FlightAppLauncher.IsHoverActivated, Loc.Get("#KER_UI_MouseHover", "MOUSE HOVER"), buttonStyle, GUILayout.Width(125.0f * GuiDisplaySize.Offset));
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Key Bindings:", settingStyle);
-            if (GUILayout.Button("EDIT KEY BINDINGS", buttonStyle, GUILayout.Width(200.0f * GuiDisplaySize.Offset)))
+            GUILayout.Label(Loc.Get("#KER_UI_KeyBindings", "Key Bindings:"), settingStyle);
+            if (GUILayout.Button(Loc.Get("#KER_UI_EditKeyBindings", "EDIT KEY BINDINGS"), buttonStyle, GUILayout.Width(200.0f * GuiDisplaySize.Offset)))
             {
                 KeyBinder.Show();
             }
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label("GUI Size: " + GuiDisplaySize.Increment, settingStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_GuiSizeValue", "GUI Size: <<1>>", GuiDisplaySize.Increment), settingStyle);
             if (GUILayout.Button("<", buttonStyle, GUILayout.Width(100.0f * GuiDisplaySize.Offset)))
             {
                 GuiDisplaySize.Increment--;
@@ -582,7 +583,7 @@ namespace KerbalEngineer.Editor
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Label("VAB Overlay X Pos.: " + BuildOverlay.BuildOverlayVessel.WindowX, settingStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_VabOverlayX", "VAB Overlay X Pos.: <<1>>", BuildOverlay.BuildOverlayVessel.WindowX), settingStyle);
             if (GUILayout.Button("<<", buttonStyle, GUILayout.Width(50 * GuiDisplaySize.Offset))) {
                 BuildOverlay.BuildOverlayVessel.WindowX-=10;
             }
@@ -597,7 +598,7 @@ namespace KerbalEngineer.Editor
             }
             GUILayout.EndHorizontal();
 
-            GUILayout.Label("Minimum delay between simulations: " + SimManager.minSimTime.TotalMilliseconds + "ms", settingStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_MinSimulationDelay", "Minimum delay between simulations: <<1>>ms", SimManager.minSimTime.TotalMilliseconds), settingStyle);
             GUI.skin = HighLogic.Skin;
             SimManager.minSimTime = TimeSpan.FromMilliseconds(GUILayout.HorizontalSlider((float)SimManager.minSimTime.TotalMilliseconds, 0, 2000.0f));
 
@@ -628,7 +629,7 @@ namespace KerbalEngineer.Editor
         private void DrawThrust()
         {
             GUILayout.BeginVertical(GUILayout.Width(75.0f * GuiDisplaySize.Offset));
-            GUILayout.Label("THRUST", titleStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_Thrust", "THRUST"), titleStyle);
             for (int i = 0; i < stagesLength; ++i)
             {
                 stage = stages[i];
@@ -646,7 +647,7 @@ namespace KerbalEngineer.Editor
         private void DrawTorque()
         {
             GUILayout.BeginVertical(GUILayout.Width(75.0f * GuiDisplaySize.Offset));
-            GUILayout.Label("TORQUE", titleStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_Torque", "TORQUE"), titleStyle);
             for (int i = 0; i < stagesLength; ++i)
             {
                 stage = stages[i];
@@ -664,7 +665,7 @@ namespace KerbalEngineer.Editor
         private void DrawTwr()
         {
             GUILayout.BeginVertical(GUILayout.Width(100.0f * GuiDisplaySize.Offset));
-            GUILayout.Label("TWR (MAX)", titleStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_TwrMax", "TWR (MAX)"), titleStyle);
             for (int i = 0; i < stagesLength; ++i)
             {
                 stage = stages[i];
@@ -682,7 +683,7 @@ namespace KerbalEngineer.Editor
         private void DrawRCS() {
 
             GUILayout.BeginVertical(GUILayout.Width(85.0f * GuiDisplaySize.Offset));
-            GUILayout.Label("RCS ISP", titleStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_RcsIsp", "RCS ISP"), titleStyle);
             for (int i = 0; i < stagesLength; ++i) {
                 stage = stages[i];
                 if (showAllStages || stage.deltaV > 0.0) {
@@ -692,7 +693,7 @@ namespace KerbalEngineer.Editor
             GUILayout.EndVertical();
 
             GUILayout.BeginVertical(GUILayout.Width(85.0f * GuiDisplaySize.Offset));
-            GUILayout.Label("RCS THRUST", titleStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_RcsThrust", "RCS THRUST"), titleStyle);
             for (int i = 0; i < stagesLength; ++i) {
                 stage = stages[i];
                 if (showAllStages || stage.deltaV > 0.0) {
@@ -702,7 +703,7 @@ namespace KerbalEngineer.Editor
             GUILayout.EndVertical();
 
             GUILayout.BeginVertical(GUILayout.Width(105.0f * GuiDisplaySize.Offset));
-            GUILayout.Label("RCS TWR (MAX)", titleStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_RcsTwrMax", "RCS TWR (MAX)"), titleStyle);
             for (int i = 0; i < stagesLength; ++i) {
                 stage = stages[i];
                 if (showAllStages || stage.deltaV > 0.0) {
@@ -712,7 +713,7 @@ namespace KerbalEngineer.Editor
             GUILayout.EndVertical();
 
             GUILayout.BeginVertical(GUILayout.Width(120.0f * GuiDisplaySize.Offset));
-            GUILayout.Label("RCS DELTA-V (MAX)", titleStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_RcsDeltaVMax", "RCS DELTA-V (MAX)"), titleStyle);
             for (int i = 0; i < stagesLength; ++i) {
                 stage = stages[i];
                 if (showAllStages || stage.deltaV > 0.0) {
@@ -722,7 +723,7 @@ namespace KerbalEngineer.Editor
             GUILayout.EndVertical();
 
             GUILayout.BeginVertical(GUILayout.Width(105.0f * GuiDisplaySize.Offset));
-            GUILayout.Label("RCS BURN TIME", titleStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_RcsBurnTime", "RCS BURN TIME"), titleStyle);
             for (int i = 0; i < stagesLength; ++i) {
                 stage = stages[i];
                 if (showAllStages || stage.deltaV > 0.0) {
@@ -888,7 +889,7 @@ namespace KerbalEngineer.Editor
                 compactModeRect = new Rect(position.width - 70.0f * GuiDisplaySize.Offset, 5.0f, 65.0f * GuiDisplaySize.Offset, 20.0f);
 
                 // Draw the compact mode toggle.
-                if (GUI.Toggle(compactModeRect, compactMode, "COMPACT", buttonStyle) != compactMode)
+                if (GUI.Toggle(compactModeRect, compactMode, Loc.Get("#KER_UI_Compact", "COMPACT"), buttonStyle) != compactMode)
                 {
                     hasChanged = true;
                     compactCheck = 2;
@@ -903,26 +904,26 @@ namespace KerbalEngineer.Editor
                     //{
                     //    SettingsWindow.Open();
                     //}
-                    if (GUI.Toggle(new Rect(position.width - 143.0f * GuiDisplaySize.Offset, 5.0f, 70.0f * GuiDisplaySize.Offset, 20.0f), showSettings, "SETTINGS", buttonStyle) != showSettings)
+                    if (GUI.Toggle(new Rect(position.width - 143.0f * GuiDisplaySize.Offset, 5.0f, 70.0f * GuiDisplaySize.Offset, 20.0f), showSettings, Loc.Get("#KER_UI_Settings", "SETTINGS"), buttonStyle) != showSettings)
                     {
                         hasChanged = true;
                         showSettings = !showSettings;
                     }
 
-                    if (GUI.Toggle(new Rect(position.width - 226.0f * GuiDisplaySize.Offset, 5.0f, 80.0f * GuiDisplaySize.Offset, 20.0f), showAllStages, "ALL STAGES", buttonStyle) != showAllStages)
+                    if (GUI.Toggle(new Rect(position.width - 226.0f * GuiDisplaySize.Offset, 5.0f, 80.0f * GuiDisplaySize.Offset, 20.0f), showAllStages, Loc.Get("#KER_UI_AllStages", "ALL STAGES"), buttonStyle) != showAllStages)
                     {
                         hasChanged = true;
                         showAllStages = !showAllStages;
                     }
 
-                    if (GUI.Toggle(new Rect(position.width - 324.0f * GuiDisplaySize.Offset, 5.0f, 95.0f * GuiDisplaySize.Offset, 20.0f), showAtmosphericDetails, "ATMOSPHERIC", buttonStyle) != showAtmosphericDetails)
+                    if (GUI.Toggle(new Rect(position.width - 324.0f * GuiDisplaySize.Offset, 5.0f, 95.0f * GuiDisplaySize.Offset, 20.0f), showAtmosphericDetails, Loc.Get("#KER_UI_Atmospheric", "ATMOSPHERIC"), buttonStyle) != showAtmosphericDetails)
                     {
                         hasChanged = true;
                         showAtmosphericDetails = !showAtmosphericDetails;
                     }
 
                     bodiesListPosition = new Rect(position.width - 452.0f * GuiDisplaySize.Offset, 5.0f, 125.0f * GuiDisplaySize.Offset, 20.0f);
-                    bodiesList.enabled = GUI.Toggle(bodiesListPosition, bodiesList.enabled, "BODY: " + CelestialBodies.SelectedBody.Name.ToUpper(), buttonStyle);
+                    bodiesList.enabled = GUI.Toggle(bodiesListPosition, bodiesList.enabled, Loc.Get("#KER_UI_BodyValue", "BODY: <<1>>", CelestialBodies.SelectedBody.Name.ToUpper()), buttonStyle);
                     bodiesList.SetPosition(bodiesListPosition.Translate(position), bodiesListPosition);
 
                     if (GUI.Toggle(new Rect(position.width - 485.0f * GuiDisplaySize.Offset, 5.0f, 30.0f * GuiDisplaySize.Offset, 20.0f), showRCS, "RCS", buttonStyle) != showRCS) {
@@ -932,7 +933,7 @@ namespace KerbalEngineer.Editor
                 }
                 else
                 {
-                    if (GUI.Toggle(new Rect(position.width - 133.0f * GuiDisplaySize.Offset, 5.0f, 60.0f * GuiDisplaySize.Offset, 20.0f), showAtmosphericDetails, "ATMO", buttonStyle) != showAtmosphericDetails)
+                    if (GUI.Toggle(new Rect(position.width - 133.0f * GuiDisplaySize.Offset, 5.0f, 60.0f * GuiDisplaySize.Offset, 20.0f), showAtmosphericDetails, Loc.Get("#KER_UI_Atmo", "ATMO"), buttonStyle) != showAtmosphericDetails)
                     {
                         hasChanged = true;
                         showAtmosphericDetails = !showAtmosphericDetails;

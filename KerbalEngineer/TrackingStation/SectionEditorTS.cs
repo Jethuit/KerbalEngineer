@@ -25,6 +25,7 @@ using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Presets;
 using KerbalEngineer.Flight.Readouts;
 using KerbalEngineer.UIControls;
+using KerbalEngineer.Unity.Localization;
 
 using UnityEngine;
 
@@ -40,7 +41,7 @@ namespace KerbalEngineer.TrackingStation {
                 return;
             }
 
-            this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, "EDIT SECTION – " + this.ParentSection.Name.ToUpper(), this.windowStyle).ClampToScreen();
+            this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, Loc.Get("#KER_UI_EditSection", "EDIT SECTION – <<1>>", this.ParentSection.DisplayName.ToUpper()), this.windowStyle).ClampToScreen();
             this.ParentSection.EditorPositionX = this.position.x;
             this.ParentSection.EditorPositionY = this.position.y;
         }
@@ -52,12 +53,12 @@ namespace KerbalEngineer.TrackingStation {
             foreach (var category in ReadoutCategory.Categories) {
                 if (category.Name != "Rendezvous" && category.Name != "Miscellaneous") continue;
 
-                var description = category.Description;
+                var description = category.DisplayDescription;
                 if (description.Length > 50) {
                     description = description.Substring(0, 50 - 1) + "...";
                 }
 
-                if (GUILayout.Button("<b>" + category.Name.ToUpper() + "</b>" + (string.IsNullOrEmpty(category.Description) ? string.Empty : "\n<i>" + description + "</i>"), category == ReadoutCategory.Selected ? this.categoryButtonActiveStyle : this.categoryButtonStyle)) {
+                if (GUILayout.Button("<b>" + category.DisplayName.ToUpper() + "</b>" + (string.IsNullOrEmpty(category.DisplayDescription) ? string.Empty : "\n<i>" + description + "</i>"), category == ReadoutCategory.Selected ? this.categoryButtonActiveStyle : this.categoryButtonStyle)) {
                     ReadoutCategory.Selected = category;
                     this.categoryList.enabled = false;
                 }

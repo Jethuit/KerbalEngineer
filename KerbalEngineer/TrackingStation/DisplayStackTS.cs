@@ -28,6 +28,7 @@ using KerbalEngineer.Flight.Sections;
 using KerbalEngineer.Settings;
 
 using UnityEngine;
+using KerbalEngineer.Unity.Localization;
 
 #endregion
 
@@ -162,7 +163,7 @@ namespace KerbalEngineer.TrackingStation {
         ///     Draws the control bar.
         /// </summary>
         protected override void DrawControlBar() {
-            GUILayout.Label("FLIGHT ENGINEER " + EngineerGlobals.ASSEMBLY_VERSION, this.titleStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_FlightEngineerTitle", "FLIGHT ENGINEER <<1>>", EngineerGlobals.ASSEMBLY_VERSION), this.titleStyle);
         }
 
         /// <summary>

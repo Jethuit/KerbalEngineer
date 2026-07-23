@@ -25,6 +25,7 @@ using System.Collections.Generic;
 using KerbalEngineer.Control.Panels;
 
 using UnityEngine;
+using KerbalEngineer.Unity.Localization;
 
 #endregion
 
@@ -142,7 +143,7 @@ namespace KerbalEngineer.Control
             try
             {
                 GUI.skin = null;
-                this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, "KERBAL ENGINEER REDUX " + EngineerGlobals.ASSEMBLY_VERSION + "p - CONTROL CENTRE", HighLogic.Skin.window);
+                this.position = GUILayout.Window(this.GetInstanceID(), this.position, this.Window, Loc.Get("#KER_UI_ControlCentreTitle", "KERBAL ENGINEER REDUX <<1>>p - CONTROL CENTRE", EngineerGlobals.ASSEMBLY_VERSION), HighLogic.Skin.window);
                 this.CentreWindow();
             }
             catch (Exception ex)
@@ -209,7 +210,7 @@ namespace KerbalEngineer.Control
                 }
             }
             GUILayout.FlexibleSpace();
-            if (GUILayout.Button("CLOSE", Button))
+            if (GUILayout.Button(Loc.Get("#KER_UI_Close", "CLOSE"), Button))
             {
                 this.enabled = false;
             }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using KerbalEngineer.Unity.Localization;
 
 namespace KerbalEngineer.UIControls {
     public class PopOutReadoutSettings : PopOutElement {
@@ -72,12 +73,12 @@ namespace KerbalEngineer.UIControls {
             GUILayout.EndHorizontal();
             
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT), GUILayout.Width(columns2and3Width));
-            GUILayout.Label("Stack", columnTextStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_Stack", "Stack"), columnTextStyle);
             GUILayout.EndHorizontal();
             
             
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT), GUILayout.Width(columns2and3Width));
-            GUILayout.Label("HUD", columnTextStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_Hud", "HUD"), columnTextStyle);
             GUILayout.EndHorizontal();
 
             GUILayout.EndHorizontal();
@@ -86,7 +87,7 @@ namespace KerbalEngineer.UIControls {
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT));
 
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT), GUILayout.Width(column1Width));
-            GUILayout.Label("Text color", textStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_TextColor", "Text color"), textStyle);
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT), GUILayout.Width(columns2and3Width));
@@ -107,7 +108,7 @@ namespace KerbalEngineer.UIControls {
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT));
 
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT), GUILayout.Width(column1Width));
-            GUILayout.Label("Hide name", textStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_HideName", "Hide name"), textStyle);
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT), GUILayout.Width(columns2and3Width));
@@ -128,7 +129,7 @@ namespace KerbalEngineer.UIControls {
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT));
 
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT), GUILayout.Width(column1Width));
-            GUILayout.Label("Use short name", textStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_UseShortName", "Use short name"), textStyle);
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT), GUILayout.Width(columns2and3Width));
@@ -149,7 +150,7 @@ namespace KerbalEngineer.UIControls {
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT));
 
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT), GUILayout.Width(column1Width));
-            GUILayout.Label("Character limit", textStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_CharacterLimit", "Character limit"), textStyle);
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT), GUILayout.Width(columns2and3Width));
@@ -170,7 +171,7 @@ namespace KerbalEngineer.UIControls {
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT));
 
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT), GUILayout.Width(column1Width));
-            GUILayout.Label("Decimal places", textStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_DecimalPlaces", "Decimal places"), textStyle);
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal(GUILayout.Height(ROW_HEIGHT), GUILayout.Width(columns2and3Width));
@@ -187,7 +188,7 @@ namespace KerbalEngineer.UIControls {
 
             GUILayout.EndHorizontal();
 
-            if (GUILayout.Button("DONE", buttonStyle, GUILayout.Height(ROW_HEIGHT))) {
+            if (GUILayout.Button(Loc.Get("#KER_UI_Done", "DONE"), buttonStyle, GUILayout.Height(ROW_HEIGHT))) {
                 Close();
             }
             

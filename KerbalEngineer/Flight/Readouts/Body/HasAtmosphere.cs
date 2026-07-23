@@ -43,7 +43,7 @@ namespace KerbalEngineer.Flight.Readouts.Body
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            this.DrawLine(FlightGlobals.ActiveVessel.mainBody.atmosphere ? "Yes" : "No", section);
+            this.DrawLine(FlightGlobals.ActiveVessel.mainBody.atmosphere ? L("#KER_UI_Yes", "Yes") : L("#KER_UI_No", "No"), section);
         }
 
         #endregion

@@ -19,6 +19,7 @@
 namespace KerbalEngineer
 {
     using Unity;
+    using Unity.Localization;
     using Unity.UI;
     using UnityEngine;
     using UnityEngine.UI;
@@ -108,6 +109,8 @@ namespace KerbalEngineer
                     Process(applicators[i]);
                 }
             }
+
+            Loc.Apply(gameObject);
         }
 
         /// <summary>

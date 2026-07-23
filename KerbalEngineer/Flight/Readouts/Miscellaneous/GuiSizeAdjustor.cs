@@ -22,6 +22,7 @@
 using KerbalEngineer.Flight.Sections;
 
 using UnityEngine;
+using KerbalEngineer.Unity.Localization;
 
 #endregion
 
@@ -46,7 +47,7 @@ namespace KerbalEngineer.Flight.Readouts.Miscellaneous
         public override void Draw(Unity.Flight.ISectionModule section)
         {
             GUILayout.BeginHorizontal();
-            GUILayout.Label("GUI Size: " + GuiDisplaySize.Increment, this.NameStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_GuiSizeValue", "GUI Size: <<1>>", GuiDisplaySize.Increment), this.NameStyle);
             if (GUILayout.Button("<", this.ButtonStyle))
             {
                 GuiDisplaySize.Increment--;

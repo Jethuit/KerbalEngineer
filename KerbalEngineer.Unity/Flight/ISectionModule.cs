@@ -45,6 +45,8 @@ namespace KerbalEngineer.Unity.Flight
 
         string Name { get; }
 
+        string DisplayName { get; }
+
         int HudGroup { get; set; }
     }
 }

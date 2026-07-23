@@ -22,6 +22,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
+
+using KerbalEngineer.Unity.Localization;
 
 #endregion
 
@@ -58,6 +61,18 @@ namespace KerbalEngineer.Flight.Readouts
         public string Description { get; set; }
 
         public string Name { get; set; }
+
+        [XmlIgnore]
+        public string DisplayName
+        {
+            get { return Loc.Get("#KER_Category_" + this.Name + "_Name", this.Name); }
+        }
+
+        [XmlIgnore]
+        public string DisplayDescription
+        {
+            get { return Loc.Get("#KER_Category_" + this.Name + "_Description", this.Description); }
+        }
 
         #endregion
 

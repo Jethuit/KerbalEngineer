@@ -19,6 +19,7 @@
 namespace KerbalEngineer.Unity.Flight
 {
     using System.Collections.Generic;
+    using Localization;
     using UnityEngine;
     using UnityEngine.EventSystems;
     using UnityEngine.UI;
@@ -137,6 +138,8 @@ namespace KerbalEngineer.Unity.Flight
 
         protected virtual void Start()
         {
+            Loc.Apply(gameObject);
+
             // set starting alpha to zero and fade in
             SetAlpha(0.0f);
             FadeIn();
@@ -183,6 +186,7 @@ namespace KerbalEngineer.Unity.Flight
             {
                 // apply ksp theme to the created menu section object
                 flightAppLauncher.ApplyTheme(menuSectionObject);
+                Loc.Apply(menuSectionObject);
 
                 menuSectionObject.transform.SetParent(sectionsTransform, false);
 

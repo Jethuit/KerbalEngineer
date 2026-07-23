@@ -43,7 +43,7 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
 
             foreach (Stage stage in SimulationProcessor.Stages.Where(stage => stage.deltaV > 0 || stage.number == StageManager.CurrentStage))
             {
-                DrawLine("DeltaV (S" + stage.number + ")", stage.deltaV.ToString("N0") + "m/s (" + TimeFormatter.ConvertToString(stage.time) + ")", section);
+                DrawLine(L("#KER_UI_StageDeltaV", "Δv (S<<1>>)", stage.number), stage.deltaV.ToString("N0") + "m/s (" + TimeFormatter.ConvertToString(stage.time) + ")", section);
             }
         }
 

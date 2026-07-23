@@ -42,7 +42,7 @@ namespace KerbalEngineer.Flight.Readouts.Rendezvous {
         public override void Draw(Unity.Flight.ISectionModule section) {
             if (RendezvousProcessor.ShowDetails) {
                 if (double.IsNaN(RendezvousProcessor.SeparationAtEncounter))
-                    this.DrawLine("N/A", section);
+                    this.DrawLine(L("#KER_UI_NotAvailable", "N/A"), section);
                 else
                     this.DrawLine(Units.ToDistance(RendezvousProcessor.SeparationAtEncounter, section.IsHud ? HudDecimalPlaces : DecimalPlaces), section);
             }

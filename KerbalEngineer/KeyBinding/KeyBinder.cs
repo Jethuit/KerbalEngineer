@@ -23,7 +23,8 @@ namespace KerbalEngineer.KeyBinding
     using System.IO;
     using Extensions;
     using Helpers;
-    using UnityEngine;
+using UnityEngine;
+using KerbalEngineer.Unity.Localization;
 
     public class KeyBinder : MonoBehaviour
     {
@@ -224,7 +225,7 @@ namespace KerbalEngineer.KeyBinding
         /// </summary>
         protected virtual void OnGUI()
         {
-            position = GUILayout.Window(GetInstanceID(), position, RenderWindow, "Kerbal Engineer Redux - Key Bindings", HighLogic.Skin.window).ClampToScreen();
+            position = GUILayout.Window(GetInstanceID(), position, RenderWindow, Loc.Get("#KER_UI_KeyBindingsTitle", "Kerbal Engineer Redux - Key Bindings"), HighLogic.Skin.window).ClampToScreen();
             CentreWindow();
         }
 
@@ -268,16 +269,16 @@ namespace KerbalEngineer.KeyBinding
         private void RenderWindow(int id)
         {
             GUILayout.BeginVertical(HighLogic.Skin.textArea);
-            RenderKeyBind("Editor Show/Hide", EditorShowHide, binding => EditorShowHide = binding);
-            RenderKeyBind("Flight Show/Hide", FlightShowHide, binding => FlightShowHide = binding);
-            RenderKeyBind("Part Info Show/Hide", PartInfoShowHide, binding => PartInfoShowHide = binding);
-            RenderKeyBind("HUD Group 1 Show/Hide", HudGroup1ShowHide, binding => HudGroup1ShowHide = binding);
-            RenderKeyBind("HUD Group 2 Show/Hide", HudGroup2ShowHide, binding => HudGroup2ShowHide = binding);
-            RenderKeyBind("HUD Group 3 Show/Hide", HudGroup3ShowHide, binding => HudGroup3ShowHide = binding);
-            RenderKeyBind("HUD Group 4 Show/Hide", HudGroup4ShowHide, binding => HudGroup4ShowHide = binding);
+            RenderKeyBind(Loc.Get("#KER_UI_Key_Editor", "Editor Show/Hide"), EditorShowHide, binding => EditorShowHide = binding);
+            RenderKeyBind(Loc.Get("#KER_UI_Key_Flight", "Flight Show/Hide"), FlightShowHide, binding => FlightShowHide = binding);
+            RenderKeyBind(Loc.Get("#KER_UI_Key_PartInfo", "Part Info Show/Hide"), PartInfoShowHide, binding => PartInfoShowHide = binding);
+            RenderKeyBind(Loc.Get("#KER_UI_Key_HudGroup", "HUD Group <<1>> Show/Hide", 1), HudGroup1ShowHide, binding => HudGroup1ShowHide = binding);
+            RenderKeyBind(Loc.Get("#KER_UI_Key_HudGroup", "HUD Group <<1>> Show/Hide", 2), HudGroup2ShowHide, binding => HudGroup2ShowHide = binding);
+            RenderKeyBind(Loc.Get("#KER_UI_Key_HudGroup", "HUD Group <<1>> Show/Hide", 3), HudGroup3ShowHide, binding => HudGroup3ShowHide = binding);
+            RenderKeyBind(Loc.Get("#KER_UI_Key_HudGroup", "HUD Group <<1>> Show/Hide", 4), HudGroup4ShowHide, binding => HudGroup4ShowHide = binding);
             GUILayout.EndVertical();
 
-            if (GUILayout.Button("Close", HighLogic.Skin.button))
+            if (GUILayout.Button(Loc.Get("#KER_UI_Close", "Close"), HighLogic.Skin.button))
             {
                 Destroy(gameObject);
             }

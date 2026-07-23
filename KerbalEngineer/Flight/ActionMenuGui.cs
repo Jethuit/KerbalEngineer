@@ -23,6 +23,7 @@ using System;
 using System.Collections.Generic;
 
 using KerbalEngineer.Flight.Sections;
+using KerbalEngineer.Unity.Localization;
 
 using UnityEngine;
 
@@ -164,8 +165,8 @@ namespace KerbalEngineer.Flight {
         private void DrawControlBarButton() {
             try {
                 GUILayout.BeginHorizontal();
-                DisplayStack.Instance.Hidden = !GUILayout.Toggle(!DisplayStack.Instance.Hidden, "SHOW ENGINEER", this.buttonStyle);
-                if (GUILayout.Toggle(DisplayStack.Instance.ShowControlBar, "CONTROL BAR", this.buttonStyle) != DisplayStack.Instance.ShowControlBar) {
+                DisplayStack.Instance.Hidden = !GUILayout.Toggle(!DisplayStack.Instance.Hidden, Loc.Get("#KER_UI_FlightMenu_ShowEngineer", "SHOW ENGINEER"), this.buttonStyle);
+                if (GUILayout.Toggle(DisplayStack.Instance.ShowControlBar, Loc.Get("#KER_UI_FlightMenu_ControlBar", "CONTROL BAR"), this.buttonStyle) != DisplayStack.Instance.ShowControlBar) {
                     DisplayStack.Instance.ShowControlBar = !DisplayStack.Instance.ShowControlBar;
                     DisplayStack.Instance.RequestResize();
                 }
@@ -182,8 +183,8 @@ namespace KerbalEngineer.Flight {
             try {
                 foreach (var section in sections) {
                     GUILayout.BeginHorizontal();
-                    section.IsVisible = GUILayout.Toggle(section.IsVisible, section.Name.ToUpper(), this.buttonStyle);
-                    section.IsEditorVisible = GUILayout.Toggle(section.IsEditorVisible, "EDIT", this.buttonStyle, GUILayout.Width(50.0f));
+                    section.IsVisible = GUILayout.Toggle(section.IsVisible, section.DisplayName.ToUpper(), this.buttonStyle);
+                    section.IsEditorVisible = GUILayout.Toggle(section.IsEditorVisible, Loc.Get("#KER_UI_Edit", "EDIT"), this.buttonStyle, GUILayout.Width(50.0f));
                     GUILayout.EndHorizontal();
                 }
             } catch (Exception ex) {
@@ -198,9 +199,9 @@ namespace KerbalEngineer.Flight {
             try {
                 GUILayout.BeginHorizontal();
 
-                if (GUILayout.Button("NEW CUSTOM SECTION", this.buttonStyle)) {
+                if (GUILayout.Button(Loc.Get("#KER_UI_NewCustomSection", "NEW CUSTOM SECTION"), this.buttonStyle)) {
                     SectionLibrary.CustomSections.Add(new SectionModule {
-                        Name = "Custom " + (SectionLibrary.CustomSections.Count + 1),
+                        Name = Loc.Get("#KER_UI_CustomSectionName", "Custom <<1>>", SectionLibrary.CustomSections.Count + 1),
                         Abbreviation = "CUST " + (SectionLibrary.CustomSections.Count + 1),
                         IsVisible = true,
                         IsEditorVisible = true

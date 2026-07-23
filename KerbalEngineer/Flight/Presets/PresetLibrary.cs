@@ -23,6 +23,7 @@ using System.Collections.Generic;
 using System.IO;
 
 using KerbalEngineer.Settings;
+using KerbalEngineer.Unity.Localization;
 
 #endregion
 
@@ -113,7 +114,7 @@ namespace KerbalEngineer.Flight.Presets
             handler.Set("preset", preset);
             handler.Save(Path.Combine("../Presets", preset.FileName));
 
-            ScreenMessages.PostScreenMessage("Saved Preset: " + preset.Name, 2.0f, ScreenMessageStyle.UPPER_CENTER);
+            ScreenMessages.PostScreenMessage(Loc.Get("#KER_UI_SavedPreset", "Saved Preset: <<1>>", preset.Name), 2.0f, ScreenMessageStyle.UPPER_CENTER);
         }
 
         #endregion

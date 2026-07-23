@@ -22,6 +22,7 @@
 using KerbalEngineer.Extensions;
 using KerbalEngineer.Flight.Sections;
 using UnityEngine;
+using KerbalEngineer.Unity.Localization;
 
 #endregion
 
@@ -44,7 +45,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
             if (ImpactProcessor.ShowDetails) {
                 this.DrawLine(() => {
                     GUIStyle s = section.IsHud ? this.CompactButtonStyle : this.ButtonStyle;
-                    if (GUILayout.Button(ImpactProcessor.ShowMarker ? "Hide" : "Show", s,
+                    if (GUILayout.Button(ImpactProcessor.ShowMarker ? Loc.Get("#KER_UI_Hide", "Hide") : Loc.Get("#KER_UI_Show", "Show"), s,
                         GUILayout.Width(this.ContentWidth / 4), GUILayout.Height(s.fixedHeight))) {
                         show = !show;
                     }

@@ -26,7 +26,7 @@ namespace KerbalEngineer.Flight.Readouts.Body {
 
         public override void Draw(Unity.Flight.ISectionModule section) {
             if (FlightGlobals.ActiveVessel.mainBody == null)
-                DrawLine("N/A", section);
+                DrawLine(L("#KER_UI_NotAvailable", "N/A"), section);
             else
                 DrawLine(FlightGlobals.ActiveVessel.mainBody.bodyDisplayName.LocalizeRemoveGender(), section);
         }

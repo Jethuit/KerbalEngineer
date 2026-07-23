@@ -30,6 +30,7 @@ using UnityEngine;
 namespace KerbalEngineer.Flight.Readouts {
     using Extensions;
     using Unity.Flight;
+    using Unity.Localization;
 
     public abstract class ReadoutModule : ReadoutModuleConfigNode {
         #region Fields
@@ -54,6 +55,36 @@ namespace KerbalEngineer.Flight.Readouts {
         public string ShortName { get; set; }
 
         public ReadoutCategory Category { get; set; }
+
+        /// <summary>
+        ///     Gets the localised display name without changing the stable English name.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnore]
+        public string DisplayName {
+            get { return Loc.Get(this.LocalisationTag("Name"), this.Name); }
+        }
+
+        /// <summary>
+        ///     Gets the localised short name without changing the stable English short name.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnore]
+        public string DisplayShortName {
+            get {
+                if (string.IsNullOrEmpty(this.ShortName)) {
+                    return this.DisplayName;
+                }
+
+                return Loc.Get(this.LocalisationTag("Short"), this.ShortName);
+            }
+        }
+
+        /// <summary>
+        ///     Gets the localised help text without changing persisted help settings.
+        /// </summary>
+        [System.Xml.Serialization.XmlIgnore]
+        public string DisplayHelp {
+            get { return Loc.Get(this.LocalisationTag("Help"), this.HelpString); }
+        }
 
         /// <summary>
         ///     Gets and sets whether the readout can be added to a section multiple times.
@@ -173,15 +204,19 @@ namespace KerbalEngineer.Flight.Readouts {
 
         #region Methods: protected
 
+        protected static string L(string tag, string englishFallback, params object[] args) {
+            return Loc.Get(tag, englishFallback, args);
+        }
+
         protected void DrawLine(string value, Unity.Flight.ISectionModule section) {
             if (!section.IsHud) {
                 GUILayout.BeginHorizontal(GUILayout.Width(section.Width * GuiDisplaySize.Offset));
-                if (!this.HideName) GUILayout.Label((this.UseShortName && !string.IsNullOrEmpty(this.ShortName)) ? this.ShortName : this.Name, NameStyle);
+                if (!this.HideName) GUILayout.Label((this.UseShortName && !string.IsNullOrEmpty(this.ShortName)) ? this.DisplayShortName : this.DisplayName, NameStyle);
                 GUILayout.FlexibleSpace();
                 GUILayout.Label(value.ToLength(CharacterLimit), ValueStyle);
             } else {
                 GUILayout.BeginHorizontal(GUILayout.Width(section.HudWidth * GuiDisplaySize.Offset));
-                if (!this.HudHideName && !section.HideHudReadoutNames) GUILayout.Label((this.HudUseShortName && !string.IsNullOrEmpty(this.ShortName)) ? this.ShortName : this.Name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
+                if (!this.HudHideName && !section.HideHudReadoutNames) GUILayout.Label((this.HudUseShortName && !string.IsNullOrEmpty(this.ShortName)) ? this.DisplayShortName : this.DisplayName, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
                 GUILayout.FlexibleSpace();
                 GUILayout.Label(value.ToLength(HudCharacterLimit), HudValueStyle, GUILayout.Height(HudValueStyle.fontSize * 1.2f));
             }
@@ -210,9 +245,9 @@ namespace KerbalEngineer.Flight.Readouts {
             GUILayout.BeginHorizontal(GUILayout.Width((section.IsHud ? section.HudWidth : section.Width) * GuiDisplaySize.Offset));
             if (showName && !(section.IsHud ? this.HudHideName : this.HideName) && !section.HideHudReadoutNames) {
                 if (!section.IsHud) {
-                    GUILayout.Label((this.UseShortName && !string.IsNullOrEmpty(this.ShortName)) ? this.ShortName : this.Name, NameStyle);
+                    GUILayout.Label((this.UseShortName && !string.IsNullOrEmpty(this.ShortName)) ? this.DisplayShortName : this.DisplayName, NameStyle);
                 } else {
-                    GUILayout.Label((this.HudUseShortName && !string.IsNullOrEmpty(this.ShortName)) ? this.ShortName : this.Name, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
+                    GUILayout.Label((this.HudUseShortName && !string.IsNullOrEmpty(this.ShortName)) ? this.DisplayShortName : this.DisplayName, NameStyle, GUILayout.Height(NameStyle.fontSize * 1.2f));
                 }
                 GUILayout.FlexibleSpace();
             }
@@ -233,6 +268,11 @@ namespace KerbalEngineer.Flight.Readouts {
         }
 
         public bool UsingShortName(Unity.Flight.ISectionModule section) { return  !string.IsNullOrEmpty(ShortName) && (section.IsHud ? HudUseShortName : UseShortName); }
+
+        private string LocalisationTag(string suffix) {
+            string categoryName = this.Category == null ? "Unknown" : this.Category.Name;
+            return "#KER_Readout_" + categoryName + "_" + this.GetType().Name + "_" + suffix;
+        }
 
         #endregion
 

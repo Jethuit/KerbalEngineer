@@ -1,0 +1,101 @@
+name: KER zh-cn build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - zh-cn-localization
+    paths:
+      - '**/*.cs'
+      - '**/*.csproj'
+      - '**/*.cfg'
+      - 'KerbalEngineer.sln'
+      - '.github/workflows/zh-cn-build.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-localization:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate localization catalogs
+        shell: python
+        run: |
+          import collections
+          import pathlib
+          import re
+          import sys
+
+          root = pathlib.Path.cwd()
+          localization = root / "Output" / "KerbalEngineer" / "Localization"
+          placeholder_re = re.compile(r"<<\d+>>|\{\d+\}")
+          key_re = re.compile(r"^\s*(#[A-Za-z0-9_]+)\s*=\s*(.*)$")
+
+          def parse(path):
+              values = {}
+              duplicates = []
+              for number, line in enumerate(path.read_text(encoding="utf-8-sig").splitlines(), 1):
+                  match = key_re.match(line)
+                  if not match:
+                      continue
+                  key, value = match.groups()
+                  if key in values:
+                      duplicates.append((key, number))
+                  values[key] = value.strip()
+              if duplicates:
+                  raise SystemExit(f"{path}: duplicate keys: {duplicates}")
+              return values
+
+          english = parse(localization / "en-us.cfg")
+          chinese = parse(localization / "zh-cn.cfg")
+          if set(english) != set(chinese):
+              missing_zh = sorted(set(english) - set(chinese))
+              missing_en = sorted(set(chinese) - set(english))
+              raise SystemExit(f"key mismatch; missing zh-cn={missing_zh}, missing en-us={missing_en}")
+
+          for key in sorted(english):
+              en_placeholders = collections.Counter(placeholder_re.findall(english[key]))
+              zh_placeholders = collections.Counter(placeholder_re.findall(chinese[key]))
+              if en_placeholders != zh_placeholders:
+                  raise SystemExit(
+                      f"{key}: placeholder mismatch: en-us={en_placeholders}, zh-cn={zh_placeholders}"
+                  )
+
+          source_tags = set()
+          for path in root.rglob("*.cs"):
+              source_tags.update(re.findall(r'(?:Loc\.Get|\bL)\("(#[A-Za-z0-9_]+)"\s*,', path.read_text(encoding="utf-8-sig")))
+          missing_source_tags = sorted(source_tags - set(english))
+          if missing_source_tags:
+              raise SystemExit(f"source tags missing from catalogs: {missing_source_tags}")
+
+          readout_root = root / "KerbalEngineer" / "Flight" / "Readouts"
+          name_assignment = re.compile(r'(?m)^\s*(?:this\.)?Name\s*=\s*"')
+          missing_readout_tags = []
+          for path in readout_root.rglob("*.cs"):
+              if not name_assignment.search(path.read_text(encoding="utf-8-sig")):
+                  continue
+              category = path.relative_to(readout_root).parts[0]
+              prefix = f"#KER_Readout_{category}_{path.stem}_"
+              for suffix in ("Name", "Short", "Help"):
+                  key = prefix + suffix
+                  if key not in english:
+                      missing_readout_tags.append(key)
+          if missing_readout_tags:
+              raise SystemExit(f"readout tags missing from catalogs: {sorted(missing_readout_tags)}")
+
+          print(f"Validated {len(english)} keys and complete metadata for all readouts.")
+
+  build:
+    needs: validate-localization
+    uses: KSPModdingLibs/KSPBuildTools/.github/workflows/build.yml@1.1.1
+    with:
+      build-configuration: Release
+      artifacts: Output/KerbalEngineer
+      ksp-zip-url: https://github.com/KSPModdingLibs/KSPLibs/raw/529db6956a70a9e4fc0591382ff0fe4f55d96010/KSP-1.12.5.zip
+      solution-file-path: KerbalEngineer.sln
+      use-msbuild: true
+      use-ckan: false

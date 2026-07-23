@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using KerbalEngineer.Unity.Localization;
 
 namespace KerbalEngineer.UIControls {
     public class PopOutColorPicker : PopOutElement {
@@ -56,7 +57,7 @@ namespace KerbalEngineer.UIControls {
 
             GUILayout.BeginVertical();
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("RESET")) color = defaultColor;
+            if (GUILayout.Button(Loc.Get("#KER_UI_Reset", "RESET"))) color = defaultColor;
             GUILayout.EndHorizontal();
             GUILayout.EndVertical();
 

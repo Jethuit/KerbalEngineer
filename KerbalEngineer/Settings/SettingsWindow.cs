@@ -5,6 +5,7 @@
     using Flight;
     using KeyBinding;
     using Unity;
+    using Unity.Localization;
     using Unity.UI;
     using UnityEngine;
     using UnityEngine.Events;
@@ -26,7 +27,7 @@
         {
             if (m_Window == null)
             {
-                m_Window = StyleManager.CreateWindow("SETTINGS", 600.0f);
+                m_Window = StyleManager.CreateWindow(Loc.Get("#KER_UI_Settings", "SETTINGS"), 600.0f);
 
                 AddKeyBindingsButton();
                 AddFlightActivationModes();
@@ -40,10 +41,10 @@
         {
             if (m_Window != null)
             {
-                Setting buildOverlay = StyleManager.CreateSetting("Build Engineer Overlay", m_Window);
-                Toggle buildOverlayVisible = AddToggle(buildOverlay, "VISIBLE", 100.0f, value => BuildOverlay.Visible = value);
-                Toggle buildOverlayNamesOnly = AddToggle(buildOverlay, "NAMES ONLY", 100.0f, value => BuildOverlayPartInfo.NamesOnly = value);
-                Toggle buildOverlayClickToOpen = AddToggle(buildOverlay, "CLICK TO OPEN", 100.0f, value => BuildOverlayPartInfo.ClickToOpen = value);
+                Setting buildOverlay = StyleManager.CreateSetting(Loc.Get("#KER_UI_BuildEngineerOverlay", "Build Engineer Overlay"), m_Window);
+                Toggle buildOverlayVisible = AddToggle(buildOverlay, Loc.Get("#KER_UI_Visible", "VISIBLE"), 100.0f, value => BuildOverlay.Visible = value);
+                Toggle buildOverlayNamesOnly = AddToggle(buildOverlay, Loc.Get("#KER_UI_NamesOnly", "NAMES ONLY"), 100.0f, value => BuildOverlayPartInfo.NamesOnly = value);
+                Toggle buildOverlayClickToOpen = AddToggle(buildOverlay, Loc.Get("#KER_UI_ClickToOpen", "CLICK TO OPEN"), 100.0f, value => BuildOverlayPartInfo.ClickToOpen = value);
                 AddUpdateHandler(buildOverlay, () =>
                 {
                     buildOverlayVisible.isOn = BuildOverlay.Visible;
@@ -69,9 +70,9 @@
         {
             if (m_Window != null)
             {
-                Setting flightActivationMode = StyleManager.CreateSetting("Flight Engineer Activation Mode", m_Window);
-                Toggle flightActivationModeCareer = AddToggle(flightActivationMode, "CAREER", 100.0f, value => FlightEngineerCore.IsCareerMode = value);
-                Toggle flightActivationModePartless = AddToggle(flightActivationMode, "PARTLESS", 100.0f, value => FlightEngineerCore.IsCareerMode = !value);
+                Setting flightActivationMode = StyleManager.CreateSetting(Loc.Get("#KER_UI_FlightActivationMode", "Flight Engineer Activation Mode"), m_Window);
+                Toggle flightActivationModeCareer = AddToggle(flightActivationMode, Loc.Get("#KER_UI_Career", "CAREER"), 100.0f, value => FlightEngineerCore.IsCareerMode = value);
+                Toggle flightActivationModePartless = AddToggle(flightActivationMode, Loc.Get("#KER_UI_Partless", "PARTLESS"), 100.0f, value => FlightEngineerCore.IsCareerMode = !value);
                 AddUpdateHandler(flightActivationMode, () =>
                 {
                     flightActivationModeCareer.isOn = FlightEngineerCore.IsCareerMode;
@@ -84,8 +85,8 @@
         {
             if (m_Window != null)
             {
-                Setting keyBindings = StyleManager.CreateSetting("Key Bindings", m_Window);
-                AddButton(keyBindings, "EDIT KEY BINDINGS", 304.0f, KeyBinder.Show);
+                Setting keyBindings = StyleManager.CreateSetting(Loc.Get("#KER_UI_KeyBindings", "Key Bindings"), m_Window);
+                AddButton(keyBindings, Loc.Get("#KER_UI_EditKeyBindings", "EDIT KEY BINDINGS"), 304.0f, KeyBinder.Show);
             }
         }
 

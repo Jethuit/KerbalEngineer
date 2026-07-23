@@ -25,7 +25,8 @@ namespace KerbalEngineer.Editor
     using KeyBinding;
     using KSP.UI.Screens;
     using Unity;
-    using UnityEngine;
+using UnityEngine;
+using KerbalEngineer.Unity.Localization;
     using KeyBinding = global::KeyBinding;
 
     public class BuildOverlayPartInfo : MonoBehaviour
@@ -492,7 +493,7 @@ namespace KerbalEngineer.Editor
                 else if (clickToOpen && namesOnly == false)
                 {
                     GUILayout.Space(2.0f);
-                    GUILayout.Label("Click [" + ToString(KeyBinder.PartInfoShowHide) + "] to show more info...", BuildOverlay.NameStyle);
+                    GUILayout.Label(Loc.Get("#KER_UI_ClickForMoreInfo", "Click [<<1>>] to show more info...", ToString(KeyBinder.PartInfoShowHide)), BuildOverlay.NameStyle);
                 }
             }
             catch (Exception ex)

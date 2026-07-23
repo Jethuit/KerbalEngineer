@@ -19,13 +19,15 @@
 
 namespace KerbalEngineer.Control.Panels
 {
+    using Unity.Localization;
+
     public class BuildEngineerPanel : IControlPanel
     {
         #region Properties
 
         public string Name
         {
-            get { return "Build Engineer"; }
+            get { return Loc.Get("#KER_UI_BuildEngineer", "Build Engineer"); }
         }
 
         #endregion

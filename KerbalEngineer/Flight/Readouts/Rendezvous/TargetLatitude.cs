@@ -48,7 +48,7 @@ namespace KerbalEngineer.Flight.Readouts.Surface {
             if (target != null) {
                 var vessel = target.GetVessel();
                 if (vessel == null) {
-                    DrawLine("N/A", section);
+                    DrawLine(L("#KER_UI_NotAvailable", "N/A"), section);
                 } else {
                     double latitude = AngleHelper.Clamp180(vessel.latitude);
                     DrawLine(Units.ToAngleDMS(latitude) + (latitude < 0 ? " S" : " N"), section);

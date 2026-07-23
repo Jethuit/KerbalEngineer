@@ -26,7 +26,8 @@ namespace KerbalEngineer.Editor
     using System;
     using System.Collections.Generic;
     using Extensions;
-    using UnityEngine;
+using UnityEngine;
+using KerbalEngineer.Unity.Localization;
 
     public class BuildOverlayResources : MonoBehaviour
     {
@@ -95,7 +96,7 @@ namespace KerbalEngineer.Editor
         {
             try
             {
-                tabContent = new GUIContent("RESOURCES");
+                tabContent = new GUIContent(Loc.Get("#KER_UI_Resources", "RESOURCES"));
                 tabSize = BuildOverlay.TabStyle.CalcSize(tabContent);
             }
             catch (Exception ex)

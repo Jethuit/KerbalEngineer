@@ -22,7 +22,8 @@ namespace KerbalEngineer.Flight.Readouts.Miscellaneous
     #region Using Directives
 
     using Sections;
-    using UnityEngine;
+using UnityEngine;
+using KerbalEngineer.Unity.Localization;
     using VesselSimulator;
 
     #endregion
@@ -46,8 +47,8 @@ namespace KerbalEngineer.Flight.Readouts.Miscellaneous
         public override void Draw(Unity.Flight.ISectionModule section)
         {
             GUILayout.BeginHorizontal();
-            GUILayout.Label("Vectored Thrust: ", this.NameStyle);
-            SimManager.vectoredThrust = GUILayout.Toggle(SimManager.vectoredThrust, "ENABLED", this.ButtonStyle);
+            GUILayout.Label(Loc.Get("#KER_UI_VectoredThrust", "Vectored Thrust: "), this.NameStyle);
+            SimManager.vectoredThrust = GUILayout.Toggle(SimManager.vectoredThrust, Loc.Get("#KER_UI_Enabled", "ENABLED"), this.ButtonStyle);
             GUILayout.EndHorizontal();
         }
 

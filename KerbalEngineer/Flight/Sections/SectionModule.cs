@@ -32,6 +32,7 @@ using UnityEngine;
 namespace KerbalEngineer.Flight.Sections {
     using Presets;
     using Unity.Flight;
+    using Unity.Localization;
 
     /// <summary>
     ///     Object for management and display of readout modules.
@@ -204,6 +205,45 @@ namespace KerbalEngineer.Flight.Sections {
         ///     Gets and sets the name of the section.
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        ///     Gets the localised name for built-in sections while preserving custom names.
+        /// </summary>
+        [XmlIgnore]
+        public string DisplayName {
+            get {
+                const string trackingReferencePrefix = "TRACKING (REF: ";
+                if (this.Abbreviation == "TRCK" &&
+                    this.Name != null &&
+                    this.Name.StartsWith(trackingReferencePrefix, System.StringComparison.Ordinal) &&
+                    this.Name.EndsWith(")", System.StringComparison.Ordinal)) {
+                    string referenceName = this.Name.Substring(trackingReferencePrefix.Length, this.Name.Length - trackingReferencePrefix.Length - 1);
+                    return Loc.Get("#KER_Section_TRCK_Reference", "TRACKING (REF: <<1>>)", referenceName);
+                }
+
+                string canonicalName;
+                switch (this.Abbreviation) {
+                    case "ORBT": canonicalName = "ORBITAL"; break;
+                    case "SURF": canonicalName = "SURFACE"; break;
+                    case "VESL": canonicalName = "VESSEL"; break;
+                    case "RDZV": canonicalName = "RENDEZVOUS"; break;
+                    case "TRCK": canonicalName = "TRACKING"; break;
+                    case "HEAT": canonicalName = "THERMAL"; break;
+                    case "BODY": canonicalName = "BODY"; break;
+                    case "BURN": canonicalName = "MANEUVER"; break;
+                    case "LAND": canonicalName = "LANDING"; break;
+                    case "HUD 1": canonicalName = "HUD 1"; break;
+                    case "HUD 2": canonicalName = "HUD 2"; break;
+                    default: return this.Name;
+                }
+
+                if (!string.Equals(this.Name, canonicalName, System.StringComparison.OrdinalIgnoreCase)) {
+                    return this.Name;
+                }
+
+                return Loc.Get("#KER_Section_" + this.Abbreviation.Replace(" ", "") + "_Name", this.Name);
+            }
+        }
         
         /// <summary>
         ///     Which group of sections this is in, for toggling visibility of several HUD elements at once.
@@ -376,7 +416,7 @@ namespace KerbalEngineer.Flight.Sections {
                     this.LineCount += readout.LineCount;
                 }
             } else {
-                GUILayout.Label("No readouts are installed.", this.messageStyle);
+                GUILayout.Label(Loc.Get("#KER_UI_NoReadoutsInstalled", "No readouts are installed."), this.messageStyle);
                 this.LineCount = 1;
             }
 
@@ -399,9 +439,9 @@ namespace KerbalEngineer.Flight.Sections {
         /// </summary>
         private void DrawSectionTitleBar() {
             GUILayout.BeginHorizontal();
-            GUILayout.Label(this.Name.ToUpper(), this.titleStyle);
-            if (showEditButton) this.IsEditorVisible = GUILayout.Toggle(this.IsEditorVisible, "EDIT", this.buttonStyle);
-            if (showFloatButton) this.IsFloating = GUILayout.Toggle(this.IsFloating, "FLOAT", this.buttonStyle);
+            GUILayout.Label(this.DisplayName.ToUpper(), this.titleStyle);
+            if (showEditButton) this.IsEditorVisible = GUILayout.Toggle(this.IsEditorVisible, Loc.Get("#KER_UI_Edit", "EDIT"), this.buttonStyle);
+            if (showFloatButton) this.IsFloating = GUILayout.Toggle(this.IsFloating, Loc.Get("#KER_UI_Float", "FLOAT"), this.buttonStyle);
             GUILayout.EndHorizontal();
         }
 

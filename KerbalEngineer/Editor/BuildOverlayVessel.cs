@@ -28,7 +28,8 @@ namespace KerbalEngineer.Editor
     using System;
     using System.Collections.Generic;
     using Helpers;
-    using UnityEngine;
+using UnityEngine;
+using KerbalEngineer.Unity.Localization;
     using VesselSimulator;
 
     #endregion
@@ -145,7 +146,7 @@ namespace KerbalEngineer.Editor
         {
             try
             {
-                tabContent = new GUIContent("VESSEL");
+                tabContent = new GUIContent(Loc.Get("#KER_UI_Vessel", "VESSEL"));
                 tabSize = BuildOverlay.TabStyle.CalcSize(tabContent);
             }
             catch (Exception ex)

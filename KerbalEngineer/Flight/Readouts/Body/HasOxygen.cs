@@ -29,7 +29,7 @@ namespace KerbalEngineer.Flight.Readouts.Body
 
         public override void Draw(Unity.Flight.ISectionModule section)
         {
-            DrawLine(FlightGlobals.ActiveVessel.mainBody.atmosphereContainsOxygen ? "Yes" : "No", section);
+            DrawLine(FlightGlobals.ActiveVessel.mainBody.atmosphereContainsOxygen ? L("#KER_UI_Yes", "Yes") : L("#KER_UI_No", "No"), section);
         }
     }
 }

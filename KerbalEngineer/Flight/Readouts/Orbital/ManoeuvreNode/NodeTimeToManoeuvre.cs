@@ -51,7 +51,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
                 return;
             }
 
-            this.DrawLine("Time to Node", TimeFormatter.ConvertToString(ManoeuvreProcessor.UniversalTime - Planetarium.GetUniversalTime()), section);
+            this.DrawLine(L("#KER_UI_TimeToNode", "Time to Node"), TimeFormatter.ConvertToString(ManoeuvreProcessor.UniversalTime - Planetarium.GetUniversalTime()), section);
         }
 
         public override void Reset()

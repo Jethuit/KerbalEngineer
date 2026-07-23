@@ -21,7 +21,8 @@ namespace KerbalEngineer.KeyBinding
 {
     using System;
     using Extensions;
-    using UnityEngine;
+using UnityEngine;
+using KerbalEngineer.Unity.Localization;
 
     public class KeyBindPopup : MonoBehaviour
     {
@@ -142,7 +143,7 @@ namespace KerbalEngineer.KeyBinding
         /// </summary>
         protected virtual void OnGUI()
         {
-            position = GUILayout.Window(GetInstanceID(), position, RenderWindow, "Select Key Bind", HighLogic.Skin.window).ClampToScreen();
+            position = GUILayout.Window(GetInstanceID(), position, RenderWindow, Loc.Get("#KER_UI_SelectKeyBind", "Select Key Bind"), HighLogic.Skin.window).ClampToScreen();
             CentreWindow();
         }
 
@@ -173,13 +174,13 @@ namespace KerbalEngineer.KeyBinding
         /// </summary>
         private void RenderWindow(int id)
         {
-            GUILayout.Label("Press the desired key to change it.");
+            GUILayout.Label(Loc.Get("#KER_UI_PressDesiredKey", "Press the desired key to change it."));
 
             // Binding labels.
             GUILayout.BeginVertical(HighLogic.Skin.textArea);
-            GUILayout.Label("Key Bind: " + Name);
-            GUILayout.Label("Selected: " + Binding);
-            if (GUILayout.Button("Clear", HighLogic.Skin.button))
+            GUILayout.Label(Loc.Get("#KER_UI_KeyBindValue", "Key Bind: <<1>>", Name));
+            GUILayout.Label(Loc.Get("#KER_UI_SelectedValue", "Selected: <<1>>", Binding));
+            if (GUILayout.Button(Loc.Get("#KER_UI_Clear", "Clear"), HighLogic.Skin.button))
             {
                 Binding = KeyCode.None;
             }
@@ -187,12 +188,12 @@ namespace KerbalEngineer.KeyBinding
 
             // Window buttons.
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("Cancel", HighLogic.Skin.button))
+            if (GUILayout.Button(Loc.Get("#KER_UI_Cancel", "Cancel"), HighLogic.Skin.button))
             {
                 OnCancel();
             }
 
-            if (GUILayout.Button("Accept", HighLogic.Skin.button))
+            if (GUILayout.Button(Loc.Get("#KER_UI_Accept", "Accept"), HighLogic.Skin.button))
             {
                 OnAccept();
             }

@@ -20,6 +20,7 @@
 #region Using Directives
 
 using KerbalEngineer.Editor;
+using KerbalEngineer.Unity.Localization;
 
 using UnityEngine;
 
@@ -33,7 +34,7 @@ namespace KerbalEngineer.Control.Panels
 
         public string Name
         {
-            get { return "Build Overlay"; }
+            get { return Loc.Get("#KER_UI_BuildOverlay", "Build Overlay"); }
         }
 
         #endregion
@@ -42,7 +43,7 @@ namespace KerbalEngineer.Control.Panels
 
         public void Draw()
         {
-            GUILayout.Label("Build Overlay", ControlCentre.Title);
+            GUILayout.Label(Loc.Get("#KER_UI_BuildOverlay", "Build Overlay"), ControlCentre.Title);
             DrawPartInfo();
             GUILayout.Space(10.0f);
             DrawDisplays();
@@ -54,15 +55,15 @@ namespace KerbalEngineer.Control.Panels
 
         private static void DrawPartInfo()
         {
-            GUILayout.Label("Part Information (Hover Tooltips)", ControlCentre.Label);
+            GUILayout.Label(Loc.Get("#KER_UI_PartInformation", "Part Information (Hover Tooltips)"), ControlCentre.Label);
             GUILayout.BeginHorizontal();
-            BuildOverlayPartInfo.Visible = GUILayout.Toggle(BuildOverlayPartInfo.Visible, "Visible", ControlCentre.Button, GUILayout.Width(150.0f));
+            BuildOverlayPartInfo.Visible = GUILayout.Toggle(BuildOverlayPartInfo.Visible, Loc.Get("#KER_UI_Visible", "Visible"), ControlCentre.Button, GUILayout.Width(150.0f));
             if (BuildOverlayPartInfo.Visible)
             {
-                BuildOverlayPartInfo.NamesOnly = GUILayout.Toggle(BuildOverlayPartInfo.NamesOnly, "Show Names Only", ControlCentre.Button, GUILayout.Width(150.0f));
+                BuildOverlayPartInfo.NamesOnly = GUILayout.Toggle(BuildOverlayPartInfo.NamesOnly, Loc.Get("#KER_UI_ShowNamesOnly", "Show Names Only"), ControlCentre.Button, GUILayout.Width(150.0f));
                 if (!BuildOverlayPartInfo.NamesOnly)
                 {
-                    BuildOverlayPartInfo.ClickToOpen = GUILayout.Toggle(BuildOverlayPartInfo.ClickToOpen, "Click To Open", ControlCentre.Button, GUILayout.Width(150.0f));
+                    BuildOverlayPartInfo.ClickToOpen = GUILayout.Toggle(BuildOverlayPartInfo.ClickToOpen, Loc.Get("#KER_UI_ClickToOpen", "Click To Open"), ControlCentre.Button, GUILayout.Width(150.0f));
                 }
             }
             
@@ -72,10 +73,10 @@ namespace KerbalEngineer.Control.Panels
 
         private static void DrawDisplays()
         {
-            GUILayout.Label("Informational Displays", ControlCentre.Label);
+            GUILayout.Label(Loc.Get("#KER_UI_InformationalDisplays", "Informational Displays"), ControlCentre.Label);
             GUILayout.BeginHorizontal();
-            BuildOverlayVessel.Visible = GUILayout.Toggle(BuildOverlayVessel.Visible, "Vessel Details", ControlCentre.Button, GUILayout.Width(150.0f));
-            BuildOverlayResources.Visible = GUILayout.Toggle(BuildOverlayResources.Visible, "Resources List", ControlCentre.Button, GUILayout.Width(150.0f));
+            BuildOverlayVessel.Visible = GUILayout.Toggle(BuildOverlayVessel.Visible, Loc.Get("#KER_UI_VesselDetails", "Vessel Details"), ControlCentre.Button, GUILayout.Width(150.0f));
+            BuildOverlayResources.Visible = GUILayout.Toggle(BuildOverlayResources.Visible, Loc.Get("#KER_UI_ResourcesList", "Resources List"), ControlCentre.Button, GUILayout.Width(150.0f));
             GUILayout.EndHorizontal();
         }
 

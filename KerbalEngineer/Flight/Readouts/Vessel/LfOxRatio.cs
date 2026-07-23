@@ -57,18 +57,18 @@ namespace KerbalEngineer.Flight.Readouts.Vessel
             }
 
             bool usingShortName = UsingShortName(section);
-            if (currentOx <= double.Epsilon) this.DrawLine(usingShortName ? "No Ox" : "No Oxidizer", section);
+            if (currentOx <= double.Epsilon) this.DrawLine(usingShortName ? L("#KER_UI_NoOxShort", "No Ox") : L("#KER_UI_NoOxidizer", "No Oxidizer"), section);
             else {
                 const double FUEL_MIX = 440.0 / 360.0;
                 double ratio = currentLF * FUEL_MIX / currentOx;
                 if (usingShortName) {
                     if (ratio >= 10.0) {
-                        this.DrawLine("A Lot", section);
+                        this.DrawLine(L("#KER_UI_A_Lot", "A Lot"), section);
                         return;
                     }
                 } else {
                     if (ratio > 90.0) {
-                        this.DrawLine("Over 9000%", section);
+                        this.DrawLine(L("#KER_UI_Over9000", "Over 9000%"), section);
                         return;
                     }
                 }

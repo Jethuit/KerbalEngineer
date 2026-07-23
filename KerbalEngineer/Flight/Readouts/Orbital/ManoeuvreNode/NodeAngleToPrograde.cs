@@ -51,7 +51,7 @@ namespace KerbalEngineer.Flight.Readouts.Orbital.ManoeuvreNode
                 return;
             }
 
-            this.DrawLine("Node Angle to Prograde", ManoeuvreProcessor.AngleToPrograde.ToAngle(), section);
+            this.DrawLine(L("#KER_UI_NodeAnglePrograde", "Node Angle to Prograde"), ManoeuvreProcessor.AngleToPrograde.ToAngle(), section);
         }
 
         public override void Reset()
